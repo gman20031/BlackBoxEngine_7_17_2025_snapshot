@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Game\Exe\</OutDir>
-    <IntDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Game\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\exe\</OutDir>
+    <IntDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Game\Exe\</OutDir>
-    <IntDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Game\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\exe\</OutDir>
+    <IntDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\Exe\</OutDir>
+    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\exe\</OutDir>
     <IntDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\Intermediate\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Game\Exe\</OutDir>
-    <IntDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Game\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\exe\</OutDir>
+    <IntDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Game\Intermediate\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,8 +98,13 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Engine Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\lib\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_image.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_ttf.dll" "$(outputPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -117,8 +122,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Engine Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\lib\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_image.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_ttf.dll" "$(outputPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -134,6 +144,11 @@
       <AdditionalDependencies>Engine Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_image.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_ttf.dll" "$(outputPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -151,8 +166,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Engine Project.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\lib\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_image.dll" "$(outputPath)"
+copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_ttf.dll" "$(outputPath)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

@@ -73,18 +73,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
     <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\lib\</OutDir>
-    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
+    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\lib\</OutDir>
-    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
+    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\lib\</OutDir>
-    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\$(PlatformTarget)\Engine\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
+    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,7 +98,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)SDL_2.30.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -103,10 +107,13 @@
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_image.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_ttf.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -118,7 +125,7 @@ copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_ttf.dll" "$(OutDir)"</Command>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)SDL_2.30.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,10 +136,13 @@ copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_ttf.dll" "$(OutDir)"</Command>
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_image.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_ttf.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -142,7 +152,7 @@ copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_ttf.dll" "$(OutDir)"</Command>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)SDL_2.30.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,10 +161,13 @@ copy "$(SolutionDir)SDL_2.30.7\lib\x86\SDL2_ttf.dll" "$(OutDir)"</Command>
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2_image.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2_ttf.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -166,7 +179,7 @@ copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2_ttf.dll" "$(OutDir)"</Command>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)SDL_2.30.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,19 +190,24 @@ copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2_ttf.dll" "$(OutDir)"</Command>
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2_image.dll" "$(OutDir)"
-copy "$(SolutionDir)SDL_2.30.7\lib\x64\SDL2_ttf.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Auxillary\ConsoleManip.cpp" />
     <ClCompile Include="Auxillary\Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Window_BB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auxillary\ConsoleManip.h" />
     <ClInclude Include="Auxillary\Log.h" />
+    <ClInclude Include="Window_BB.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

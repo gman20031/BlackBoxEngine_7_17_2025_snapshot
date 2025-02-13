@@ -2,6 +2,7 @@
 
 #include <fstream>
 
+
 namespace BlackBoxEngine
 {
 	class Logger

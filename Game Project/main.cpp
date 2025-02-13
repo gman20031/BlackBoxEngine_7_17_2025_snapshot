@@ -1,13 +1,12 @@
 #include <iostream>
 
-#include "../Engine Project/Auxillary/Log.h"
-
+#include "../Engine Project/Window_BB.h"
 
 int main()
 {
-	BlackBoxEngine::Log("Logging Test");
-	BlackBoxEngine::Log("BlackBox grinding gears");
-	//BlackBoxEngine::Log("BlackBox grinding gears Two");
+	BlackBoxEngine::GameWindow myWindow("Zelda Game", 200, 200, 1024, 768);
+
+	myWindow.StartWindow();
 
 	return 0;
 } 

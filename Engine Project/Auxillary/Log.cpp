@@ -32,3 +32,5 @@ void BlackBoxEngine::Log(const char* string)
 	std::cout << string << '\n';
 	Logger::AppendToLogFile(string);
 }
+
+
