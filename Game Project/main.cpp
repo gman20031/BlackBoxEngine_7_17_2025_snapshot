@@ -1,12 +1,13 @@
 #include <iostream>
 
-#include "../Engine Project/Window_BB.h"
+
+#include "GameManager.h"
 
 int main()
 {
-	BlackBoxEngine::GameWindow myWindow("Zelda Game", 200, 200, 1024, 768);
+	GameManager zeldaManager;
 
-	myWindow.StartWindow();
+	zeldaManager.StartGame();
 
 	return 0;
 } 

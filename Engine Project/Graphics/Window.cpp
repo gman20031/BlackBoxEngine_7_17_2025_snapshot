@@ -1,24 +1,26 @@
-#include "Window_BB.h"
+#include "Window.h"
 
-#include "Auxillary/Log.h"
+#include "../Auxillary/Log.h"
 #include "SDL.h"
+#include "Graphics.h"
 
-BlackBoxEngine::GameWindow::GameWindow(const char* title, int xPos, int yPos, int width, int height)
+BlackBoxEngine::BB_Window::BB_Window(const char* title, int xPos, int yPos, int width, int height)
 	: m_pTitle(title)
 	, m_xPos(xPos)
 	, m_yPos(yPos)
 	, m_width(width)
 	, m_height(height)
 {
-
+	auto renderer = new BB_Renderer(this);
+	m_pRenderer.reset(renderer);
 }
 
-BlackBoxEngine::GameWindow::~GameWindow()
+BlackBoxEngine::BB_Window::~BB_Window()
 {
 	SDL_free(m_pSdlWindow);
 }
 
-int BlackBoxEngine::GameWindow::SetTitle(const char* title)
+int BlackBoxEngine::BB_Window::SetTitle(const char* title)
 {
 	if (!SDL_SetWindowTitle(m_pSdlWindow, title))
 	{
@@ -29,7 +31,7 @@ int BlackBoxEngine::GameWindow::SetTitle(const char* title)
 	return 0;
 }
 
-int BlackBoxEngine::GameWindow::SetDimensions(int width, int height)
+int BlackBoxEngine::BB_Window::SetDimensions(int width, int height)
 {
 	if (!SDL_SetWindowSize(m_pSdlWindow, width, height))
 	{
@@ -41,7 +43,7 @@ int BlackBoxEngine::GameWindow::SetDimensions(int width, int height)
 	return 0;
 }
 
-int BlackBoxEngine::GameWindow::SetPosition(int x, int y)
+int BlackBoxEngine::BB_Window::SetPosition(int x, int y)
 {
 	if (!SDL_SetWindowPosition(m_pSdlWindow, x, y))
 	{
@@ -53,9 +55,8 @@ int BlackBoxEngine::GameWindow::SetPosition(int x, int y)
 	return 0;
 }
 
-int BlackBoxEngine::GameWindow::StartWindow()
+int BlackBoxEngine::BB_Window::StartWindow()
 {
-
 	m_pSdlWindow = SDL_CreateWindow(m_pTitle, m_width, m_height, 0);
 	if (!m_pSdlWindow)
 	{
@@ -69,22 +70,10 @@ int BlackBoxEngine::GameWindow::StartWindow()
 		return 1;
 	}
 
-	SDL_Event event;
-	while (m_keepRunning)
-	{
-		while (SDL_PollEvent(&event))
-		{
-			if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_X)
-				m_keepRunning = false;
-			if (event.type == SDL_EVENT_QUIT)
-				m_keepRunning = false;
-		}
-	}
-
 	return 0;
 }
 
-int BlackBoxEngine::GameWindow::StopWindow()
+int BlackBoxEngine::BB_Window::StopWindow()
 {
 	m_keepRunning = false;
     return 0;

@@ -71,29 +71,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
-    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
+    <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
-    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
+    <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
-    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
+    <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)BlackBoxEngine\$(Configuration)\Engine\lib\</OutDir>
-    <IntDir>$(SolutionDir)\BlackBoxEngine\$(Configuration)\Engine\Intermediate\</IntDir>
+    <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
+    <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -120,7 +119,6 @@
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -147,7 +145,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -174,7 +171,6 @@
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
@@ -201,13 +197,20 @@
   <ItemGroup>
     <ClCompile Include="Auxillary\ConsoleManip.cpp" />
     <ClCompile Include="Auxillary\Log.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Window_BB.cpp" />
+    <ClCompile Include="EngineManager.cpp" />
+    <ClCompile Include="Graphics\Graphics.cpp" />
+    <ClCompile Include="Graphics\Window.cpp" />
+    <ClCompile Include="LibTesting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auxillary\ConsoleManip.h" />
     <ClInclude Include="Auxillary\Log.h" />
-    <ClInclude Include="Window_BB.h" />
+    <ClInclude Include="EngineManager.h" />
+    <ClInclude Include="Graphics\Color.h" />
+    <ClInclude Include="Graphics\Graphics.h" />
+    <ClInclude Include="Graphics\GraphicsManager.h" />
+    <ClInclude Include="Graphics\Window.h" />
+    <ClInclude Include="LibTesting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
