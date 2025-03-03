@@ -12,7 +12,7 @@ namespace BlackBoxEngine
 		friend class BB_Renderer;
 
 	private:
-		std::unique_ptr<BB_Renderer> m_pRenderer;
+		std::unique_ptr<BB_Renderer> m_pRenderer = nullptr;
 
 		const char* m_pTitle = nullptr;
 		int m_xPos = 0;

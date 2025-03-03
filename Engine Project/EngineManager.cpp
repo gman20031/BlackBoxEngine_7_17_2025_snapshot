@@ -13,7 +13,7 @@ size_t BlackBoxEngine::BlackBoxManager::CreateNewWindow(
 	int width,
 	int height)
 {
-	auto* pWindow = new BB_Window(
+	auto pWindow = std::make_unique<BB_Window>(
 		title,
 		xPos,
 		yPos,
@@ -21,22 +21,30 @@ size_t BlackBoxEngine::BlackBoxManager::CreateNewWindow(
 		height
 	);
 
-	m_allWindows.emplace_back(pWindow);
+	m_allWindows.push_back( std::move(pWindow) );
 
 	return m_allWindows.size() - 1;
 }
 
-
 int BlackBoxEngine::BlackBoxManager::StartEngine()
 {
-	while (m_keepRunning)
-	{
-		std::ranges::for_each(m_allWindows, [](const WindowPtr& window) {
-			auto& pRenderer = window->GetRenderer();
-			pRenderer->ClearRenderer();
-			pRenderer->Present();
+	std::ranges::for_each(m_allWindows, [&](const WindowPtr& pWindow)
+		{
+			if (pWindow->StartWindow() != 0)
+				m_keepRunning = false;
 		});
 
+	while (m_keepRunning)
+	{
+		std::ranges::for_each(m_allWindows, [this](const WindowPtr& window)
+		{
+			auto& pRenderer = window->GetRenderer();
+			pRenderer->ClearRenderer();
+
+			m_pGraphicsTestFunction(pRenderer);
+			
+			pRenderer->Present();
+		});
 
 		SDL_Event event;
 		while ( SDL_PollEvent(&event) )

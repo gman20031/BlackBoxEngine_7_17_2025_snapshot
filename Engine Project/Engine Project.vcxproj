@@ -198,7 +198,9 @@
     <ClCompile Include="Auxillary\ConsoleManip.cpp" />
     <ClCompile Include="Auxillary\Log.cpp" />
     <ClCompile Include="EngineManager.cpp" />
-    <ClCompile Include="Graphics\Graphics.cpp" />
+    <ClCompile Include="Graphics\Renderer.cpp" />
+    <ClCompile Include="Graphics\RenderingStructs.h" />
+    <ClCompile Include="Graphics\Texture.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="LibTesting.cpp" />
   </ItemGroup>
@@ -207,8 +209,10 @@
     <ClInclude Include="Auxillary\Log.h" />
     <ClInclude Include="EngineManager.h" />
     <ClInclude Include="Graphics\Color.h" />
-    <ClInclude Include="Graphics\Graphics.h" />
+    <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\GraphicsManager.h" />
+    <ClInclude Include="Graphics\Texture.h" />
+    <ClInclude Include="Graphics\TextureFactory.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="LibTesting.h" />
   </ItemGroup>

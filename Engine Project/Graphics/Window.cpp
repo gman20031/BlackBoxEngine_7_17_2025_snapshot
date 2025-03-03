@@ -2,7 +2,7 @@
 
 #include "../Auxillary/Log.h"
 #include "SDL.h"
-#include "Graphics.h"
+#include "Renderer.h"
 
 BlackBoxEngine::BB_Window::BB_Window(const char* title, int xPos, int yPos, int width, int height)
 	: m_pTitle(title)
@@ -11,8 +11,7 @@ BlackBoxEngine::BB_Window::BB_Window(const char* title, int xPos, int yPos, int 
 	, m_width(width)
 	, m_height(height)
 {
-	auto renderer = new BB_Renderer(this);
-	m_pRenderer.reset(renderer);
+
 }
 
 BlackBoxEngine::BB_Window::~BB_Window()
@@ -67,6 +66,13 @@ int BlackBoxEngine::BB_Window::StartWindow()
 	if (!SDL_SetWindowPosition(m_pSdlWindow, m_xPos, m_yPos))
 	{
 		Log(SDL_GetError());
+		return 1;
+	}
+
+	m_pRenderer = std::make_unique<BB_Renderer>(this);
+	if (!m_pRenderer)
+	{
+		Log("Renderer not Created");
 		return 1;
 	}
 
