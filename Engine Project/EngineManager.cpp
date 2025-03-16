@@ -28,26 +28,34 @@ size_t BlackBoxEngine::BlackBoxManager::CreateNewWindow(
 
 int BlackBoxEngine::BlackBoxManager::StartEngine()
 {
-	std::ranges::for_each(m_allWindows, [&](const WindowPtr& pWindow)
-		{
-			if (pWindow->StartWindow() != 0)
-				m_keepRunning = false;
-		});
-
 	while (m_keepRunning)
 	{
+
+		// Render
 		std::ranges::for_each(m_allWindows, [this](const WindowPtr& window)
 		{
 			auto& pRenderer = window->GetRenderer();
 			pRenderer->ClearRenderer();
 
-			m_pGraphicsTestFunction(pRenderer);
-			
+
+
 			pRenderer->Present();
 		});
 
+
+		/*	scene manager psuedo code
+		*	For ( const auto& pWindow : SceneManager.ActiveScenes() )
+		*		
+		*/
+
+		/*	
+		*	Game code Examples
+		*
+		*/
+
+		/// Get Input
 		SDL_Event event;
-		while ( SDL_PollEvent(&event) )
+		while (SDL_PollEvent(&event))
 		{
 			switch (event.type)
 			{
@@ -60,8 +68,20 @@ int BlackBoxEngine::BlackBoxManager::StartEngine()
 				break;
 			}
 		}
-	
+
+		/// Update Systems
+
 		
 	}
     return 0;
+}
+
+int BlackBoxEngine::BlackBoxManager::InitEngine()
+{
+	std::ranges::for_each(m_allWindows, [&](const WindowPtr& pWindow)
+		{
+			if (pWindow->StartWindow() != 0)
+				m_keepRunning = false;
+		});
+	return 0;
 }

@@ -24,6 +24,7 @@
     <ProjectGuid>{f5bafd06-38b7-4dc7-a13c-12508036bd0e}</ProjectGuid>
     <RootNamespace>Engine_Project</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>EngineProject</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,21 +75,25 @@
     <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
     <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
+    <TargetName>BlackBoxEngine</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
     <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
+    <TargetName>BlackBoxEngine</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
     <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
+    <TargetName>BlackBoxEngine</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\lib\</OutDir>
     <IntDir>$(SolutionDir)\BlackBoxEngine_Build\$(Configuration)\Engine\Intermediate\</IntDir>
     <IncludePath>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\</IncludePath>
+    <TargetName>BlackBoxEngine</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -112,6 +117,7 @@
     <Lib>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,6 +146,7 @@
     <Lib>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -164,6 +171,7 @@
     <Lib>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -173,7 +181,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf</AdditionalIncludeDirectories>
     </ClCompile>
@@ -192,21 +200,33 @@
     <Lib>
       <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Auxillary\ConsoleManip.cpp" />
-    <ClCompile Include="Auxillary\Log.cpp" />
+    <ClCompile Include="Actors\Actor.cpp" />
+    <ClCompile Include="Actors\EngineComponents\SpriteComponent.cpp" />
+    <ClCompile Include="Actors\EngineComponents\TranslationComponent.h" />
+    <ClCompile Include="System\ConsoleManip.cpp" />
+    <ClCompile Include="System\Log.cpp" />
     <ClCompile Include="EngineManager.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\RenderingStructs.h" />
     <ClCompile Include="Graphics\Texture.cpp" />
+    <ClCompile Include="Graphics\TextureFactory.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="LibTesting.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Auxillary\ConsoleManip.h" />
-    <ClInclude Include="Auxillary\Log.h" />
+    <ClInclude Include="Actors\Actor.h" />
+    <ClInclude Include="Actors\Component.h" />
+    <ClInclude Include="Actors\EngineComponents\ComponentTemplate.txt" />
+    <ClInclude Include="Actors\EngineComponents\SpriteComponent.h" />
+    <ClInclude Include="System\ConsoleManip.h" />
+    <ClInclude Include="System\Log.h" />
+    <ClInclude Include="System\NumericalConcepts.h" />
+    <ClInclude Include="System\Random.h" />
+    <ClInclude Include="System\StringHash.h" />
     <ClInclude Include="EngineManager.h" />
     <ClInclude Include="Graphics\Color.h" />
     <ClInclude Include="Graphics\Renderer.h" />

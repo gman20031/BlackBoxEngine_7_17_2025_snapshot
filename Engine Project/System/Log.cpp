@@ -1,22 +1,15 @@
 #include "Log.h"
 
-#include <filesystem>
-#include <iostream>
-#include <assert.h> 
-
-
 BlackBoxEngine::Logger::~Logger()
 {
-	m_logFile.close();
+	if(m_logFile.is_open())
+		m_logFile.close();
 }
 
 void BlackBoxEngine::Logger::AppendToLogFile(const char* str)
 {
-	if (!m_fileOpened)
-	{
+	if (!m_logFile.is_open())
 		m_logFile.open(logFilePath, std::ios::out); // Creates file for first time.
-		m_fileOpened = true;
-	}
 	assert(m_logFile.is_open());
 
 	m_logFile << str << '\n';

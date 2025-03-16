@@ -16,7 +16,7 @@ private: // Variables
 
 
 private: // functions
-	static void SetupRenderingTest(const BlackBoxEngine::BlackBoxManager::RendererPtr& pRenderer);
+	//static void SetupRenderingTest(BlackBoxEngine::BlackBoxManager::RendererPtr& pRenderer);
 
 public:
 	GameManager();

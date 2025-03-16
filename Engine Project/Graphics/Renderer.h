@@ -3,16 +3,15 @@
 #include "RenderingStructs.h"
 #include "Color.h"
 #include "Window.h"
+#include "Texture.h"
 
-class BB_Texture;
 struct SDL_Renderer;
 
 namespace BlackBoxEngine
 {
-
-
 	class BB_Renderer
 	{
+		friend class BB_TextureFactory;
 	private: // variables
 		SDL_Renderer* m_pSdlRenderer = nullptr;
 		const BB_Window* m_pAttachedWindow = nullptr;
@@ -29,7 +28,7 @@ namespace BlackBoxEngine
 
 	public:
 		BB_Renderer(BB_Window* pWindow);
-		
+		~BB_Renderer();
 		void ClearRenderer();
 		void Present();
 
@@ -46,7 +45,8 @@ namespace BlackBoxEngine
 		const char* GetErrorStr();
 
 		// draw texture
-		bool DrawTexture(const BB_Texture& texture,
+		bool DrawTexture(
+			const std::unique_ptr<BB_Texture>& texture,
 			const BB_Rectangle* source = nullptr,
 			const BB_Rectangle* dest = nullptr,
 			const double rot = 0,

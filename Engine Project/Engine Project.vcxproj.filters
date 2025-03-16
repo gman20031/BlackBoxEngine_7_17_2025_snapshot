@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Auxillary\ConsoleManip.cpp">
+    <ClCompile Include="System\ConsoleManip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Auxillary\Log.cpp">
+    <ClCompile Include="System\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Window.cpp">
@@ -39,12 +39,24 @@
     <ClCompile Include="Graphics\RenderingStructs.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\TextureFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\Actor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\EngineComponents\TranslationComponent.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\EngineComponents\SpriteComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Auxillary\ConsoleManip.h">
+    <ClInclude Include="System\ConsoleManip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Auxillary\Log.h">
+    <ClInclude Include="System\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Window.h">
@@ -69,6 +81,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\TextureFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\StringHash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\NumericalConcepts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\Actor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\EngineComponents\SpriteComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\EngineComponents\ComponentTemplate.txt">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

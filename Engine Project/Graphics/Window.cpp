@@ -1,6 +1,6 @@
 #include "Window.h"
 
-#include "../Auxillary/Log.h"
+#include "../System/Log.h"
 #include "SDL.h"
 #include "Renderer.h"
 
@@ -16,7 +16,8 @@ BlackBoxEngine::BB_Window::BB_Window(const char* title, int xPos, int yPos, int 
 
 BlackBoxEngine::BB_Window::~BB_Window()
 {
-	SDL_free(m_pSdlWindow);
+	if(m_pSdlWindow)
+		SDL_free(m_pSdlWindow);
 }
 
 int BlackBoxEngine::BB_Window::SetTitle(const char* title)

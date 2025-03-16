@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <functional>
 
 #include "Graphics/Window.h"
 #include "Graphics/Renderer.h"
@@ -11,17 +12,19 @@ namespace BlackBoxEngine
 	class BlackBoxManager
 	{
 	public:
-		using RendererPtr = std::unique_ptr<BB_Renderer>;
 		using WindowPtr = std::unique_ptr<BB_Window>;
-		using TestFunctionPtr = void(*)(const RendererPtr&);
-	private:
-		std::vector< WindowPtr > m_allWindows;
-		TestFunctionPtr m_pGraphicsTestFunction = nullptr;
 
-		// ActorManager
+	private:
+		// Actor Manager
 		 
-		// input manager
-	
+		// Input Manager
+
+		// Scene Manager
+		std::vector< WindowPtr > m_allWindows;
+		/* Scene manager
+		*  	- Contains a number of scenes, each scene had 
+		*/
+
 	public:
 		bool m_keepRunning = false;
 
@@ -30,8 +33,8 @@ namespace BlackBoxEngine
 		[[nodiscard("index not caught after creating window")]] size_t CreateNewWindow
 			(const char* title, int xPos, int yPos, int width, int height);
 		
-		void SetGraphicsTest(TestFunctionPtr pTestFunction) { m_pGraphicsTestFunction = pTestFunction; }
 		int StartEngine();
+		int InitEngine();
 	};
 
 

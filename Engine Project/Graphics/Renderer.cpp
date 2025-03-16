@@ -3,8 +3,7 @@
 #include <SDL.h>
 #include <assert.h>
 
-#include "../Auxillary/Log.h"
-#include "Texture.h"
+#include "../System/Log.h"
 
 //////////////////////////////////////////////////////////////////
 ///  Private Functions
@@ -37,6 +36,12 @@ BlackBoxEngine::BB_Renderer::BB_Renderer(BB_Window* pWindow)
 		Log(SDL_GetError());
 
 	SetRenderDrawColor(kDefaultDrawColor);
+}
+
+BlackBoxEngine::BB_Renderer::~BB_Renderer()
+{
+	if (m_pSdlRenderer)
+		SDL_free(m_pSdlRenderer);
 }
 
 /**
@@ -91,7 +96,7 @@ const char* BlackBoxEngine::BB_Renderer::GetErrorStr()
 }
 
 bool BlackBoxEngine::BB_Renderer::DrawTexture(
-	const BB_Texture& texture,
+	const std::unique_ptr<BB_Texture>& texture,
 	const BB_Rectangle* source,
 	const BB_Rectangle* dest,
 	const double rot,
@@ -99,17 +104,21 @@ bool BlackBoxEngine::BB_Renderer::DrawTexture(
 	const BB_FlipVal& flip
 )
 {
-	SDL_FRect sdlSource = { source->x,source->y,source->w,source->h };
-	SDL_FRect sdlDest = { dest->x,dest->y,dest->w,dest->h };
+	const SDL_FRect* pSdlSource  = (const SDL_FRect*)(source);
+	const SDL_FRect* pSdlDest    = (const SDL_FRect*)(dest);
+	const SDL_FPoint* pSdlCenter = (const SDL_FPoint*)(center);
+	const SDL_FlipMode sdlFlip   = static_cast<SDL_FlipMode>(flip);
 
-	/*
-	SDL_RenderTextureRotated(
-		m_pSdlRenderer,
-		texture.m_pSdlTexture,
-		&sdlSource,
-		&sdlDest,
-		rot,
-	)
-	*/
-	return false;
+	assert(m_pSdlRenderer);
+
+	return SDL_RenderTextureRotated(
+			m_pSdlRenderer,
+			texture->m_pSdlTexture,
+			pSdlSource,
+			pSdlDest,
+			rot,
+			pSdlCenter,
+			sdlFlip
+		);
+
 }

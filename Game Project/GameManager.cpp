@@ -2,23 +2,9 @@
 
 #include <assert.h>
 
-#include "../Engine Project/Auxillary/Log.h"
-
-
-void GameManager::SetupRenderingTest(const BlackBoxEngine::BlackBoxManager::RendererPtr& pRenderer)
-{
-	pRenderer->SetRenderDrawColor(BlackBoxEngine::ColorPresets::green);
-
-	if ( !pRenderer->DrawLine({ 0,0 }, { 100,100 }) )
-		BlackBoxEngine::Log(pRenderer->GetErrorStr());
-
-	BlackBoxEngine::BB_Rectangle myRect(
-		50, 50,
-		500, 500
-	);
-	if (!pRenderer->DrawRectFilled(myRect))
-		BlackBoxEngine::Log( pRenderer->GetErrorStr() );
-}
+#include "../Engine Project/System/Log.h"
+#include "../Engine Project/Graphics/TextureFactory.h"
+#include "../Engine Project/Graphics/RenderingStructs.h"
 
 GameManager::GameManager()
 {
@@ -31,7 +17,21 @@ GameManager::GameManager()
 
 void GameManager::StartGame()
 {
-	m_engineManager.SetGraphicsTest(&SetupRenderingTest);
+	m_engineManager.InitEngine();
+
+	auto& pRenderer = m_engineManager.GetWindow(m_windowIndex)->GetRenderer();
+	const auto& linkTexture = BlackBoxEngine::BB_TextureFactory::Create(pRenderer, "../Assets/Link.png");
+	const auto& floorTexture = BlackBoxEngine::BB_TextureFactory::Create(pRenderer, "../Assets/Dungeon.png");
+
+	auto test = [&linkTexture, &floorTexture,&pRenderer]() -> void
+		{
+
+			if (!pRenderer->DrawTexture(floorTexture))
+				BlackBoxEngine::Log(pRenderer->GetErrorStr());
+		};
+
+	//m_engineManager.SetGraphicsTest(std::move(test));
+
 	m_engineManager.m_keepRunning = true;
 	m_engineManager.StartEngine();
 

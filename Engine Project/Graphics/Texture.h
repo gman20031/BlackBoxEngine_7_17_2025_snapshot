@@ -1,8 +1,11 @@
 #pragma once
 
-struct SDL_Texture;
-class BB_Renderer;
+#include <stdint.h>
+
+#include "Color.h"
 #include "RenderingStructs.h"
+
+struct SDL_Texture;
 
 namespace BlackBoxEngine
 {
@@ -15,8 +18,12 @@ namespace BlackBoxEngine
 		SDL_Texture* m_pSdlTexture = nullptr;
 	public:
 		BB_Texture(SDL_Texture* pTexture);
+		~BB_Texture();
+		BB_Texture(const BB_Texture&) = delete;
+		BB_Texture& operator=(const BB_Texture&) = delete;
 
-		int Render();
+		bool SetAlpha(uint8_t alpha);
+		bool SetColorMod(const ColorValue& colorMod);
 
 	};
 
