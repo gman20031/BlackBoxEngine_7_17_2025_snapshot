@@ -12,7 +12,7 @@ namespace BlackBoxEngine
 		friend class BB_Renderer;
 
 	private:
-		std::unique_ptr<BB_Renderer> m_pRenderer = nullptr;
+		BB_Renderer* m_pRenderer = nullptr;
 
 		const char* m_pTitle = nullptr;
 		int m_xPos = 0;
@@ -34,7 +34,7 @@ namespace BlackBoxEngine
 		int SetDimensions(int width, int height);
 		int SetPosition(int x, int y);
 
-		const std::unique_ptr<BB_Renderer>& GetRenderer() const { return m_pRenderer; }
+		BB_Renderer* const GetRenderer() const { return m_pRenderer; }
 
 		int StartWindow();
 		int StopWindow();

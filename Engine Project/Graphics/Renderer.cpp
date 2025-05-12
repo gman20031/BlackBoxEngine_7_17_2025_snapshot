@@ -33,7 +33,7 @@ BlackBoxEngine::BB_Renderer::BB_Renderer(BB_Window* pWindow)
 
 	m_pSdlRenderer = SDL_CreateRenderer(pWindow->m_pSdlWindow, NULL);
 	if (!m_pSdlRenderer)
-		Log(SDL_GetError());
+		SimpleLog(SDL_GetError());
 
 	SetRenderDrawColor(kDefaultDrawColor);
 }
@@ -58,7 +58,7 @@ void BlackBoxEngine::BB_Renderer::ClearRenderer()
 void BlackBoxEngine::BB_Renderer::Present()
 {
 	if (!SDL_RenderPresent(m_pSdlRenderer))
-		Log(SDL_GetError());
+        SimpleLog(SDL_GetError());
 }
 
 bool BlackBoxEngine::BB_Renderer::SetRenderDrawColor(const ColorValue& newDrawColor)
@@ -96,29 +96,29 @@ const char* BlackBoxEngine::BB_Renderer::GetErrorStr()
 }
 
 bool BlackBoxEngine::BB_Renderer::DrawTexture(
-	const std::unique_ptr<BB_Texture>& texture,
-	const BB_Rectangle* source,
-	const BB_Rectangle* dest,
-	const double rot,
-	const BB_Point* center,
-	const BB_FlipVal& flip
+    BB_Texture* texture,
+    const BB_Rectangle* source,
+    const BB_Rectangle* dest,
+    const double rot,
+    const BB_Point* center,
+    const BB_FlipVal& flip
 )
 {
-	const SDL_FRect* pSdlSource  = (const SDL_FRect*)(source);
-	const SDL_FRect* pSdlDest    = (const SDL_FRect*)(dest);
-	const SDL_FPoint* pSdlCenter = (const SDL_FPoint*)(center);
-	const SDL_FlipMode sdlFlip   = static_cast<SDL_FlipMode>(flip);
+    const SDL_FRect* pSdlSource = (const SDL_FRect*)(source);
+    const SDL_FRect* pSdlDest = (const SDL_FRect*)(dest);
+    const SDL_FPoint* pSdlCenter = (const SDL_FPoint*)(center);
+    const SDL_FlipMode sdlFlip = static_cast<SDL_FlipMode>(flip);
 
-	assert(m_pSdlRenderer);
+    assert(m_pSdlRenderer);
 
-	return SDL_RenderTextureRotated(
-			m_pSdlRenderer,
-			texture->m_pSdlTexture,
-			pSdlSource,
-			pSdlDest,
-			rot,
-			pSdlCenter,
-			sdlFlip
-		);
+    return SDL_RenderTextureRotated(
+        m_pSdlRenderer,
+        texture->m_pSdlTexture,
+        pSdlSource,
+        pSdlDest,
+        rot,
+        pSdlCenter,
+        sdlFlip
+    );
 
 }

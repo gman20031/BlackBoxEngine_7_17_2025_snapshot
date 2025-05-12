@@ -9,55 +9,52 @@ struct SDL_Renderer;
 
 namespace BlackBoxEngine
 {
-	class BB_Renderer
-	{
-		friend class BB_TextureFactory;
-	private: // variables
-		SDL_Renderer* m_pSdlRenderer = nullptr;
-		const BB_Window* m_pAttachedWindow = nullptr;
-		// default renderer background color
-		inline static constexpr ColorValue kDefaultBackgroundColor = ColorPresets::black;
-		inline static constexpr ColorValue kDefaultDrawColor = ColorPresets::white;
+    class BB_Renderer
+    {
+        friend class BB_TextureFactory;
+    private: // variables
+        SDL_Renderer* m_pSdlRenderer = nullptr;
+        const BB_Window* m_pAttachedWindow = nullptr;
 
-		// current draw color
-		ColorValue m_currentBackgroundColor;
-		ColorValue m_currentDrawColor;
+        // default renderer background color
+        inline static constexpr ColorValue kDefaultBackgroundColor = ColorPresets::black;
+        inline static constexpr ColorValue kDefaultDrawColor = ColorPresets::white;
 
-	private: // functions
-		bool SetSDLDrawColor(const ColorValue& newColor);
+        // current draw color
+        ColorValue m_currentBackgroundColor;
+        ColorValue m_currentDrawColor;
 
-	public:
-		BB_Renderer(BB_Window* pWindow);
-		~BB_Renderer();
-		void ClearRenderer();
-		void Present();
+    private: // functions
+        bool SetSDLDrawColor(const ColorValue& newColor);
 
-		bool SetRenderDrawColor(const ColorValue& newDrawColor);
-		bool SetRenderBackgroundColor(const ColorValue& newBackgroundColor);
+    public:
+        BB_Renderer(BB_Window* pWindow);
+        ~BB_Renderer();
+        void ClearRenderer();
+        void Present();
 
-		// draw line
-		bool DrawLine(BB_Point start, BB_Point end);
+        bool SetRenderDrawColor(const ColorValue& newDrawColor);
+        bool SetRenderBackgroundColor(const ColorValue& newBackgroundColor);
 
-		// draw rectangle
-		bool DrawRect(const BB_Rectangle& rec);
-		bool DrawRectFilled(const BB_Rectangle& rec);
+        // draw line
+        bool DrawLine(BB_Point start, BB_Point end);
 
-		const char* GetErrorStr();
+        // draw rectangle
+        bool DrawRect(const BB_Rectangle& rec);
+        bool DrawRectFilled(const BB_Rectangle& rec);
 
-		// draw texture
-		bool DrawTexture(
-			const std::unique_ptr<BB_Texture>& texture,
-			const BB_Rectangle* source = nullptr,
-			const BB_Rectangle* dest = nullptr,
-			const double rot = 0,
-			const BB_Point* center = nullptr,
-			const BB_FlipVal& flip = BB_FlipVal::kNone
-		);
-		
-		// draw presetSprite
-	};
+        const char* GetErrorStr();
+        // draw texture
+        bool DrawTexture(
+            BB_Texture* texture,
+            const BB_Rectangle* source = nullptr,
+            const BB_Rectangle* dest = nullptr,
+            const double rot = 0,
+            const BB_Point* center = nullptr,
+            const BB_FlipVal& flip = BB_FlipVal::kNone
+        );
 
-	// class texture
+        // draw presetSprite
+    };
 
-	// struct Sprite
-}
+};

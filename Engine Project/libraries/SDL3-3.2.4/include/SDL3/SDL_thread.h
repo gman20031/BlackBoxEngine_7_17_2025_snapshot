@@ -513,7 +513,7 @@ extern SDL_DECLSPEC void SDLCALL SDL_DetachThread(SDL_Thread *thread);
  *
  * \sa SDL_SetTLS
  */
-extern SDL_DECLSPEC void * SDLCALL SDL_GetTLS(SDL_TLSID *id);
+extern SDL_DECLSPEC void * SDLCALL SDL_GetTLS(SDL_TLSID *m_id);
 
 /**
  * The callback used to cleanup data passed to SDL_SetTLS.
@@ -554,7 +554,7 @@ typedef void (SDLCALL *SDL_TLSDestructorCallback)(void *value);
  *
  * \sa SDL_GetTLS
  */
-extern SDL_DECLSPEC bool SDLCALL SDL_SetTLS(SDL_TLSID *id, const void *value, SDL_TLSDestructorCallback destructor);
+extern SDL_DECLSPEC bool SDLCALL SDL_SetTLS(SDL_TLSID *m_id, const void *value, SDL_TLSDestructorCallback destructor);
 
 /**
  * Cleanup all TLS data for this thread.

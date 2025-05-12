@@ -4,9 +4,8 @@
 
 class GameManager
 {
-	BlackBoxEngine::BlackBoxManager m_engineManager;
-
-	size_t m_windowIndex = 0;
+    BlackBoxEngine::BlackBoxManager* m_pEngineManager;
+    size_t m_sceneIndex = 0;
 
 private: // Variables
 	inline static constexpr int kDefaultXPos	= 200;
@@ -14,14 +13,11 @@ private: // Variables
 	inline static constexpr int kDefaultWidth	= 1024;
 	inline static constexpr int kDefaultHeight	= 786;
 
-
 private: // functions
-	//static void SetupRenderingTest(BlackBoxEngine::BlackBoxManager::RendererPtr& pRenderer);
+    void InitGame();
 
 public:
 	GameManager();
-
-	BlackBoxEngine::BlackBoxManager& Engine() { return m_engineManager; }
 
 	void StartGame();
 };

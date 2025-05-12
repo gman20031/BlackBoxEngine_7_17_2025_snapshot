@@ -2,55 +2,75 @@
 
 #include <memory>
 #include <unordered_map>
-
 #include "stdint.h"
-#include "Component.h"
 
-class ActorManager;
+#include "Component.h"
+#include "../System/XML/BlackBoxXMLParser.h"
 
 namespace BlackBoxEngine
 {
-	class Actor
+    class ActorManager;
+	
+    class Actor
 	{
+        friend class ActorXMLParser;
+        inline static constexpr bool kLogSuccess = false;
 	public:
 		friend bool operator==(const Actor& lhs, const Actor& rhs);
-		using ComponentPtr = std::unique_ptr<Component>;
-		using Id_t = uint32_t;
+		using Id = uint32_t;
 
 	private:
 		ActorManager* m_pActorManager = nullptr;
-		std::unordered_map<Id_t, ComponentPtr> m_ComponentMap;
+		std::unordered_map<Id, Component*> m_componentMap;
+        Id m_id;
 
 	public:
-		Actor(ActorManager* pManager);
+		Actor(ActorManager* pManager, Id id);
+        Actor() = delete;
+        ~Actor();
+        Actor(const Actor&) = delete;
+        Actor(Actor&&) = default;
+        Actor& operator=(const Actor&) = delete;
+        Actor& operator=(Actor&&) = default;
 
-		template<SubComponent Component_t> Component_t* AddComponent();
-		Component* AddComponent(ComponentPtr&& pNewComponent, Id_t componentId);
-		[[nodiscard("Component Unused")]] Component* GetComponent(Id_t componentId);
-		template<SubComponent Component_t> [[nodiscard("Component unused")]] Component_t* GetComponent();
-		[[nodiscard]] const std::unordered_map<Id_t, ComponentPtr >& GetAllComponents() const;
+        ActorManager* Manager() const { return m_pActorManager; }
 
-		//void Init(); // Commented out until needed
+        bool ParseComponent(const XMLElementParser componentParser);
+		template<SubComponent ComponentType, typename ...Args> ComponentType* AddComponent(Args&&... args);
+        Component* AddComponent(Component::Id componentId);
+		[[nodiscard("Component Unused")]] Component* GetComponent(Id componentId);
+        template<SubComponent ComponentType> [[nodiscard("Component Unused")]] ComponentType* GetComponent();
+
 		void Update();
 		void Render();
 		void Start();
 	};
 
-	template<SubComponent Component_t>
-	inline Component_t* Actor::AddComponent()
+	template<SubComponent ComponentType , typename ...Args>
+	inline ComponentType* Actor::AddComponent(Args&&... args)
 	{
-		m_ComponentMap.try_emplace(Component_t::s_id, std::make_unique<Component_t>(this));
-		return static_cast<Component_t*> (GetComponent(Component_t::s_id));
+        if (m_componentMap.contains(ComponentType::s_id))
+            return nullptr;
+
+        ComponentType* pOut = new ComponentType(this, std::forward<Args>(args)...);
+		m_componentMap.try_emplace(ComponentType::s_id, pOut);
+		return pOut;
 	}
 
-	template<SubComponent Component_t>
-	inline Component_t* Actor::GetComponent()
-	{
-		return static_cast<Component_t*> (GetComponent(Component_t::s_id));
-	}
+	template<SubComponent ComponentType>
+	inline ComponentType* Actor::GetComponent()
+    {
+        return static_cast<ComponentType*> (GetComponent(ComponentType::s_id));
+    }
 
-	template<SubComponent Component_t>
-	const Actor::ComponentPtr& FindOrCreateComponent(Actor* pActor)
+    template<SubComponent ComponentType>
+    ComponentType* FindOrCreateComponent(Actor* pActor)
+    {
+        ComponentType* pComponent = pActor->GetComponent<ComponentType>();
+        if (!pComponent)
+            pComponent = pActor->AddComponent<ComponentType>();
+        return pComponent;
+    }
 
 }// BlackBoxEngine
 

@@ -1,0 +1,22 @@
+<Background>
+    <Component Name="TranslationComponent">
+        <Velocity>
+            <X>0</X>
+            <Y>0</Y>
+        </Velocity>
+        <Position>
+            <X>0</X>
+            <Y>0</Y>
+        </Position>
+        <Rotation>
+            <X>0</X>
+            <Y>0</Y>
+        </Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>1024</width>
+        <height>786</height>
+        <filePath>../Assets/Dungeon.png</filePath>
+    </Component>
+
+</Background>

@@ -18,13 +18,15 @@ BlackBoxEngine::BB_Window::~BB_Window()
 {
 	if(m_pSdlWindow)
 		SDL_free(m_pSdlWindow);
+    if (m_pRenderer)
+        delete m_pRenderer;
 }
 
 int BlackBoxEngine::BB_Window::SetTitle(const char* title)
 {
 	if (!SDL_SetWindowTitle(m_pSdlWindow, title))
 	{
-		Log(SDL_GetError());
+        BB_LOG(LogType::kError , SDL_GetError());
 		return 1;
 	}
 	m_pTitle = title;
@@ -35,7 +37,7 @@ int BlackBoxEngine::BB_Window::SetDimensions(int width, int height)
 {
 	if (!SDL_SetWindowSize(m_pSdlWindow, width, height))
 	{
-		Log(SDL_GetError());
+        BB_LOG(LogType::kError , SDL_GetError());
 		return 1;
 	}
 	m_width = width;
@@ -47,33 +49,33 @@ int BlackBoxEngine::BB_Window::SetPosition(int x, int y)
 {
 	if (!SDL_SetWindowPosition(m_pSdlWindow, x, y))
 	{
-		Log(SDL_GetError());
-		return 1;
-	}
-	m_width = x;
-	m_height = y;
-	return 0;
+        BB_LOG(LogType::kError , SDL_GetError());
+        return 1;
+    }
+    m_width = x;
+    m_height = y;
+    return 0;
 }
 
 int BlackBoxEngine::BB_Window::StartWindow()
 {
-	m_pSdlWindow = SDL_CreateWindow(m_pTitle, m_width, m_height, 0);
-	if (!m_pSdlWindow)
-	{
-		Log(SDL_GetError());
+    m_pSdlWindow = SDL_CreateWindow(m_pTitle, m_width, m_height, 0);
+    if (!m_pSdlWindow)
+    {
+        SimpleLog(SDL_GetError());
 		return 1;
 	}
 
 	if (!SDL_SetWindowPosition(m_pSdlWindow, m_xPos, m_yPos))
 	{
-		Log(SDL_GetError());
-		return 1;
-	}
+        SimpleLog(SDL_GetError());
+        return 1;
+    }
 
-	m_pRenderer = std::make_unique<BB_Renderer>(this);
-	if (!m_pRenderer)
-	{
-		Log("Renderer not Created");
+    m_pRenderer = new BB_Renderer(this);
+    if (!m_pRenderer)
+    {
+        SimpleLog("Renderer not Created");
 		return 1;
 	}
 

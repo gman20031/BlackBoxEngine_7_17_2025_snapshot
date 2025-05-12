@@ -2,46 +2,78 @@
 
 #include <algorithm>
 
-BlackBoxEngine::Actor::Actor(ActorManager* pManager)
-	: m_pActorManager(pManager)
-{
-}
+#include "ComponentFactory.h"
+#include "../System/Log.h"
+#include "../System/XML/tinyxml2.h"
 
-Component* BlackBoxEngine::Actor::AddComponent(ComponentPtr&& pNewComponent, Id_t componentId)
+namespace BlackBoxEngine
 {
-    return nullptr;
-}
+    Actor::Actor(ActorManager* pManager, Actor::Id id)
+        : m_pActorManager(pManager)
+        , m_id(id)
+    {
+    }
 
-Component* BlackBoxEngine::Actor::GetComponent(Id_t componentId)
-{
-    return nullptr;
-}
+    Actor::~Actor()
+    {
+        for (auto& [id, pActor] : m_componentMap)
+            delete pActor;
+    }
 
-const std::unordered_map<BlackBoxEngine::Actor::Id_t, BlackBoxEngine::Actor::ComponentPtr>&
-	BlackBoxEngine::Actor::GetAllComponents() const
-{
-    // TODO: insert return statement here
-}
+    Component* Actor::AddComponent(Component::Id componentId)
+    {
+        if (m_componentMap.contains(componentId))
+            return nullptr;
 
-//void BlackBoxEngine::BB_Actor::Init()
-//{
-//
-//}
+        Component* pOut = ComponentFactory::NewComponent(componentId, this);
+        m_componentMap.emplace(componentId, pOut);
+        return pOut;
+    }
 
-void BlackBoxEngine::Actor::Update()
-{
-	for (const auto& [id, pComponent] : m_ComponentMap)
-		pComponent->Update();
-}
+    bool Actor::ParseComponent(const XMLElementParser componentParser)
+    {
+        if( ! componentParser )
+            return false;
 
-void BlackBoxEngine::Actor::Render()
-{
-	for (const auto& [id, pComponent] : m_ComponentMap)
-		pComponent->Render();
-}
+        if constexpr (kLogSuccess)
+            BB_LOG(LogType::kMessage, "Adding component : " , componentParser.GetComponentName() );
+        Component* pComponent = AddComponent( StringHash(componentParser.GetComponentName() ) );
 
-void BlackBoxEngine::Actor::Start()
-{
-	for ( const auto& [id, pComponent] : m_ComponentMap )
-		pComponent->Start();
+        if (!pComponent)
+            BB_LOG(LogType::kError, "Component creation failed, ", componentParser.GetComponentName());
+        
+        pComponent->Load(componentParser);
+        return true;
+    }
+
+    Component* Actor::GetComponent(Id componentId)
+    {
+        auto it = m_componentMap.find(componentId);
+        if( it == m_componentMap.end() )
+            return nullptr; // returning nullptr is a valid response. Not error/warning worthy
+        return it->second;
+    }
+
+    void Actor::Update()
+    {
+        for (const auto& [id, pComponent] : m_componentMap)
+            pComponent->Update();
+    }
+
+    void Actor::Render()
+    {
+        for (const auto& [id, pComponent] : m_componentMap)
+            pComponent->Render();
+    }
+
+    void Actor::Start()
+    {
+        for (const auto& [id, pComponent] : m_componentMap)
+            pComponent->Start();
+    }
+
+    bool operator==(const Actor& lhs, const Actor& rhs)
+    {
+        return (lhs.m_id == rhs.m_id);
+    }
 }

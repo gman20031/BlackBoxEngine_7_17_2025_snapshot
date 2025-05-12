@@ -564,7 +564,7 @@ extern SDL_DECLSPEC SDL_Cursor * SDLCALL SDL_CreateColorCursor(SDL_Surface *surf
  *
  * \sa SDL_DestroyCursor
  */
-extern SDL_DECLSPEC SDL_Cursor * SDLCALL SDL_CreateSystemCursor(SDL_SystemCursor id);
+extern SDL_DECLSPEC SDL_Cursor * SDLCALL SDL_CreateSystemCursor(SDL_SystemCursor m_id);
 
 /**
  * Set the active cursor.

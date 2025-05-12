@@ -1,0 +1,22 @@
+<Player>
+    <Component Name="TranslationComponent">
+        <Velocity>
+            <X>0</X>
+            <Y>0</Y>
+        </Velocity>
+        <Position>
+            <X>150</X>
+            <Y>200</Y>
+        </Position>
+        <Rotation>
+            <X>0</X>
+            <Y>0</Y>
+        </Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Link.png</filePath>
+    </Component>
+    <Component Name="PlayerMovement"/>
+</Player>

@@ -2,37 +2,46 @@
 
 #include <assert.h>
 
+#include "../Engine Project/System/SimpleTimingSystem.h"
+
 #include "../Engine Project/System/Log.h"
-#include "../Engine Project/Graphics/TextureFactory.h"
+#include "../Engine Project/Actors/EngineComponents/SpriteComponent.h"
 #include "../Engine Project/Graphics/RenderingStructs.h"
 
+#include "PlayerCharacter/PlayerMovement.h"
+
+using namespace BlackBoxEngine;
 GameManager::GameManager()
 {
-	m_windowIndex = m_engineManager.CreateNewWindow(
+    m_pEngineManager = BlackBoxManager::Get();
+	m_sceneIndex = m_pEngineManager->CreateSceneWindow(
 		"New Game", kDefaultXPos, kDefaultYPos, kDefaultWidth, kDefaultHeight
 	);
 	
-	BlackBoxEngine::Log( "Window Created: Index " + std::to_string(m_windowIndex) );
+    BB_LOG(BlackBoxEngine::LogType::kMessage, "Scene created : index ", m_sceneIndex);
+}
+
+void GameManager::InitGame()
+{
+    auto* pActorManager = m_pEngineManager->GetScene(m_sceneIndex)->m_pSceneActorManager;
+    pActorManager->LoadActor("../Assets/Actors/Background.xml");
+    pActorManager->LoadActor("../Assets/Actors/Player.xml");
+    pActorManager->LoadActor("../Assets/Actors/Goriya.xml");
+
+    //auto& pActor = pActorManager->LoadActor("../Assets/Actors/Test.xml");
+    //pActor->GetComponent<SpriteComponent>()->SetTexture("../Assets/Link.png");
+    //pActor->GetComponent<SpriteComponent>()->SetDimensions(32,32);
+    //BlackBoxEngine::ActorXMLParser::SaveActor(pActor, "Player");
 }
 
 void GameManager::StartGame()
 {
-	m_engineManager.InitEngine();
+	m_pEngineManager->InitEngine();
+    InitGame();
 
-	auto& pRenderer = m_engineManager.GetWindow(m_windowIndex)->GetRenderer();
-	const auto& linkTexture = BlackBoxEngine::BB_TextureFactory::Create(pRenderer, "../Assets/Link.png");
-	const auto& floorTexture = BlackBoxEngine::BB_TextureFactory::Create(pRenderer, "../Assets/Dungeon.png");
+    BB_LOG(LogType::kMessage, "Startup time " , SimpleTimer::StopTimer("Startup time") );
 
-	auto test = [&linkTexture, &floorTexture,&pRenderer]() -> void
-		{
-
-			if (!pRenderer->DrawTexture(floorTexture))
-				BlackBoxEngine::Log(pRenderer->GetErrorStr());
-		};
-
-	//m_engineManager.SetGraphicsTest(std::move(test));
-
-	m_engineManager.m_keepRunning = true;
-	m_engineManager.StartEngine();
+	m_pEngineManager->m_keepRunning = true;
+	m_pEngineManager->StartEngine();
 
 }

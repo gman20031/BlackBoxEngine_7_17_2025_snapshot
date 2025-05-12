@@ -1,0 +1,8 @@
+Component Registered: PlayerMovement
+Component Registered: SpriteComponent
+Component Registered: TranslationComponent
+Scene created : index 0
+../Assets/Dungeon.png imported properly
+../Assets/Link.png imported properly
+../Assets/Darknut.png imported properly
+Startup time 291ms

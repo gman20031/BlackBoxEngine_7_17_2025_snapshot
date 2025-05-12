@@ -58,6 +58,7 @@
 #define TEXT_GREEN TEXT_RGB(0,255,0)
 #define TEXT_BLUE  TEXT_RGB(0,0,255)
 #define TEXT_YEL   TEXT_RGB(255,255,0)
+#define TEXT_ORANGE TEXT_RGB(255,165,0)
 #define TEXT_DEF "0m"
 #define TEXT_FOR_DEF "39"
 #define BACK_RGB(r,g,b) TEXT_FORMAT(48;2;r;g;b)
@@ -108,22 +109,22 @@ public:
 	static void Printf(const char output, const char* formatting = m_pDefaultFormat);
 
 	template<streamOverloaded Type>
-	static void Printf(Type output, const char* formatting = m_pDefaultFormat);
+	static void Printf(Type output, const char* formatting = m_pDefaultFormat , std::ostream& os = std::cout);
 
 	template<streamOverloaded Type>
-	static void Printf(Type output, std::initializer_list<const char*> formatList);
+	static void Printf(Type output, std::initializer_list<const char*> formatList, std::ostream& os = std::cout);
 };
 
 template<streamOverloaded Type>
-inline void ConsoleManip::Printf(Type output, const char* formatting)
+inline void ConsoleManip::Printf(Type output, const char* formatting, std::ostream& os)
 {
-	std::cout << VT_ESC << formatting << output << VT_ESC << m_pDefaultFormat;
+	os << VT_ESC << formatting << output << VT_ESC << m_pDefaultFormat;
 }
 
 template<streamOverloaded Type>
-inline void ConsoleManip::Printf(Type output, std::initializer_list<const char*> formatList)
+inline void ConsoleManip::Printf(Type output, std::initializer_list<const char*> formatList, std::ostream& os)
 {
 	for (auto& format : formatList)
-		std::cout << VT_ESC << format;
-	Printf(output);
+		os << VT_ESC << format;
+	Printf(output , NULL , os);
 }

@@ -9,7 +9,7 @@ BlackBoxEngine::BB_Texture::BB_Texture(SDL_Texture* pTexture)
 	: m_pSdlTexture(pTexture)
 {
 	if (!m_pSdlTexture)
-		Log("Texture not Found : "  __FUNCTION__);
+		BB_LOG(LogType::kError , "Texture not found when wrapping SDL_Texture");
 }
 
 BlackBoxEngine::BB_Texture::~BB_Texture()

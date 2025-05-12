@@ -438,7 +438,7 @@ extern SDL_DECLSPEC SDL_TimerID SDLCALL SDL_AddTimerNS(Uint64 interval, SDL_NSTi
  *
  * \sa SDL_AddTimer
  */
-extern SDL_DECLSPEC bool SDLCALL SDL_RemoveTimer(SDL_TimerID id);
+extern SDL_DECLSPEC bool SDLCALL SDL_RemoveTimer(SDL_TimerID m_id);
 
 
 /* Ends C function definitions when using C++ */

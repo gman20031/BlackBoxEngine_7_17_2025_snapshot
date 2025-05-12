@@ -1376,7 +1376,7 @@ extern SDL_DECLSPEC SDL_WindowID SDLCALL SDL_GetWindowID(SDL_Window *window);
  *
  * \sa SDL_GetWindowID
  */
-extern SDL_DECLSPEC SDL_Window * SDLCALL SDL_GetWindowFromID(SDL_WindowID id);
+extern SDL_DECLSPEC SDL_Window * SDLCALL SDL_GetWindowFromID(SDL_WindowID m_id);
 
 /**
  * Get parent of a window.

@@ -14,14 +14,3 @@ void BlackBoxEngine::Logger::AppendToLogFile(const char* str)
 
 	m_logFile << str << '\n';
 }
-
-void BlackBoxEngine::Log(const std::string& string)
-{
-	Log(string.c_str());
-}
-
-void BlackBoxEngine::Log(const char* string)
-{
-	std::cout << string << '\n';
-	Logger::AppendToLogFile(string);
-}

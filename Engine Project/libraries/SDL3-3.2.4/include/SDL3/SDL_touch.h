@@ -101,7 +101,7 @@ typedef enum SDL_TouchDeviceType
  */
 typedef struct SDL_Finger
 {
-    SDL_FingerID id;  /**< the finger ID */
+    SDL_FingerID m_id;  /**< the finger ID */
     float x;  /**< the x-axis location of the touch event, normalized (0...1) */
     float y;  /**< the y-axis location of the touch event, normalized (0...1) */
     float pressure; /**< the quantity of pressure applied, normalized (0...1) */

@@ -15,17 +15,16 @@ namespace BlackBoxEngine
 	class BB_TextureFactory
 	{
 	// typdefs
-		using StringHash_t = uint32_t;
-		using TexturePtr = std::unique_ptr<BB_Texture>;
-		using RendererPtr = std::unique_ptr<BB_Renderer>;
+		using HashType = uint32_t;
+		using BB_RendererPtr = BB_Renderer*;
 
 	private: // Variables
-		inline static std::unordered_map<StringHash_t, TexturePtr> m_sTextureCache;
+		inline static std::unordered_map<HashType, std::weak_ptr<BB_Texture> > m_sTextureCache;
 
 	public: // Functions
 		BB_TextureFactory() = delete;
 
-		static const TexturePtr& Create(const RendererPtr& pRenderer, const char* imageFilePath);
+		static std::shared_ptr<BB_Texture> Create(const BB_RendererPtr pRenderer, const char* imageFilePath);
 	};
 
 }

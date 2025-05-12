@@ -14,12 +14,12 @@ namespace BlackBoxEngine
 
 	namespace ColorPresets
 	{
-		inline static constexpr ColorValue white =  { 255,255,255,255 };
-		inline static constexpr ColorValue black =  { 0,0,0,255 };
+		inline static constexpr ColorValue white = {255,255,255,255};
+		inline static constexpr ColorValue black = {0  ,0  ,0  ,255};
 
-		inline static constexpr ColorValue red =   { 255,0,0,255 };
-		inline static constexpr ColorValue green = { 0, 255,0,255 };
-		inline static constexpr ColorValue blue =  { 0,0,255,255 };
+		inline static constexpr ColorValue red   = {255,0  ,0  ,255};
+		inline static constexpr ColorValue green = {0  ,255,0  ,255};
+		inline static constexpr ColorValue blue  = {0  ,0  ,255,255};
 	}
 
 }
