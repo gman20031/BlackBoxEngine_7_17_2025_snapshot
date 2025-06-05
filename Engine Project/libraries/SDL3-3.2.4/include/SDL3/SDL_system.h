@@ -56,10 +56,10 @@ typedef struct tagMSG MSG;
 /**
  * A callback to be used with SDL_SetWindowsMessageHook.
  *
- * This callback may modify the message, and should return true if the message
+ * This callback may modify the messageId, and should return true if the messageId
  * should continue to be processed, or false to prevent further processing.
  *
- * As this is processing a message directly from the Windows event loop, this
+ * As this is processing a messageId directly from the Windows event loop, this
  * callback should do the minimum required work and return quickly.
  *
  * \param userdata the app-defined pointer provided to
@@ -78,9 +78,9 @@ typedef struct tagMSG MSG;
 typedef bool (SDLCALL *SDL_WindowsMessageHook)(void *userdata, MSG *msg);
 
 /**
- * Set a callback for every Windows message, run before TranslateMessage().
+ * Set a callback for every Windows messageId, run before TranslateMessage().
  *
- * The callback may modify the message, and should return true if the message
+ * The callback may modify the messageId, and should return true if the messageId
  * should continue to be processed, or false to prevent further processing.
  *
  * \param callback the SDL_WindowsMessageHook function to call.
@@ -566,7 +566,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_RequestAndroidPermission(const char *permis
  *
  * https://developer.android.com/reference/android/view/Gravity
  *
- * \param message text message to be shown.
+ * \param messageId text messageId to be shown.
  * \param duration 0=short, 1=long.
  * \param gravity where the notification should appear on the screen.
  * \param xoffset set this parameter only when gravity >=0.
@@ -583,7 +583,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_ShowAndroidToast(const char *message, int d
 /**
  * Send a user command to SDLActivity.
  *
- * Override "boolean onUnhandledMessage(Message msg)" to handle the message.
+ * Override "boolean onUnhandledMessage(EnqueueMessage msg)" to handle the messageId.
  *
  * \param command user command that must be greater or equal to 0x8000.
  * \param param user parameter.

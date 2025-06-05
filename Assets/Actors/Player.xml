@@ -1,22 +1,30 @@
-<Player>
-    <Component Name="TranslationComponent">
+<Actor type = "Player">
+    <Component Name="TransformComponent">
+        <Position>
+            <X>150</X>
+            <Y>350</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="MoverComponent">
         <Velocity>
             <X>0</X>
             <Y>0</Y>
         </Velocity>
-        <Position>
-            <X>150</X>
-            <Y>200</Y>
-        </Position>
-        <Rotation>
-            <X>0</X>
-            <Y>0</Y>
-        </Rotation>
-    </Component>
+	</Component>
     <Component Name="SpriteComponent">
         <width>64</width>
         <height>64</height>
         <filePath>../Assets/Link.png</filePath>
     </Component>
     <Component Name="PlayerMovement"/>
-</Player>
+    <Component Name="PlayerHealth"/>
+    <Component Name="PlayerReaction"/>
+    <Component Name="GameTestingComponent"/>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>true</blockable>
+		<enabled>true</enabled>
+	</Component>
+</Actor>

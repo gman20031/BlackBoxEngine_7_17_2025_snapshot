@@ -1,0 +1,21 @@
+<Actor type = "Key">
+    <Component Name="TransformComponent">
+        <Position>
+            <X>300</X>
+            <Y>550</Y>
+        </Position>
+        <Rotation>90</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>24</width>
+        <height>48</height>
+        <filePath>../Assets/Key.png</filePath>
+    </Component>
+	<Component Name="KeyLogic"/>
+	<Component Name="AABBColliderComponent">
+		<width>32</width>
+        <height>32</height>
+		<blockable>true</blockable>
+		<enabled>true</enabled>
+	</Component>
+</Actor>

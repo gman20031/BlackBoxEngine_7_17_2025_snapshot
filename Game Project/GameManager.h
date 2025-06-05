@@ -1,11 +1,10 @@
 #pragma once
 
-#include "../Engine Project/EngineManager.h"
+#include "../Engine Project/BlackBoxManager.h"
 
 class GameManager
 {
     BlackBoxEngine::BlackBoxManager* m_pEngineManager;
-    size_t m_sceneIndex = 0;
 
 private: // Variables
 	inline static constexpr int kDefaultXPos	= 200;
@@ -18,8 +17,9 @@ private: // functions
 
 public:
 	GameManager();
+    ~GameManager();
 
-	void StartGame();
+	void Launch();
 };
 
 

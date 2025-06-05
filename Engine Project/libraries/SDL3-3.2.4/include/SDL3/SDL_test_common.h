@@ -275,7 +275,7 @@ void SDLCALL SDLTest_CommonQuit(SDLTest_CommonState *state);
  *
  * \param renderer The renderer to draw to.
  * \param window The window whose information should be displayed.
- * \param usedHeight Returns the height used, so the caller can draw more below.
+ * \param usedHeight Returns the m_height used, so the caller can draw more below.
  *
  */
 void SDLCALL SDLTest_CommonDrawWindowInfo(SDL_Renderer *renderer, SDL_Window *window, float *usedHeight);

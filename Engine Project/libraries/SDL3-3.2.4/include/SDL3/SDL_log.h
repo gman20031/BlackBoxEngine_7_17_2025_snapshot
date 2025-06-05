@@ -22,10 +22,10 @@
 /**
  * # CategoryLog
  *
- * Simple log messages with priorities and categories. A message's
- * SDL_LogPriority signifies how important the message is. A message's
+ * Simple log messages with priorities and categories. A messageId's
+ * SDL_LogPriority signifies how important the messageId is. A messageId's
  * SDL_LogCategory signifies from what domain it belongs to. Every category
- * has a minimum priority specified: when a message belongs to that category,
+ * has a minimum priority specified: when a messageId belongs to that category,
  * it will only be sent out if it has that minimum priority or higher.
  *
  * SDL's own logs are sent below the default priority threshold, so they are
@@ -222,9 +222,9 @@ extern SDL_DECLSPEC void SDLCALL SDL_ResetLogPriorities(void);
 extern SDL_DECLSPEC bool SDLCALL SDL_SetLogPriorityPrefix(SDL_LogPriority priority, const char *prefix);
 
 /**
- * Log a message with SDL_LOG_CATEGORY_APPLICATION and SDL_LOG_PRIORITY_INFO.
+ * Log a messageId with SDL_LOG_CATEGORY_APPLICATION and SDL_LOG_PRIORITY_INFO.
  *
- * \param fmt a printf() style message format string.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the `fmt` string, if
  *            any.
  *
@@ -245,10 +245,10 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetLogPriorityPrefix(SDL_LogPriority priori
 extern SDL_DECLSPEC void SDLCALL SDL_Log(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(1);
 
 /**
- * Log a message with SDL_LOG_PRIORITY_TRACE.
+ * Log a messageId with SDL_LOG_PRIORITY_TRACE.
  *
- * \param category the category of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -270,10 +270,10 @@ extern SDL_DECLSPEC void SDLCALL SDL_Log(SDL_PRINTF_FORMAT_STRING const char *fm
 extern SDL_DECLSPEC void SDLCALL SDL_LogTrace(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2);
 
 /**
- * Log a message with SDL_LOG_PRIORITY_VERBOSE.
+ * Log a messageId with SDL_LOG_PRIORITY_VERBOSE.
  *
- * \param category the category of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -293,10 +293,10 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogTrace(int category, SDL_PRINTF_FORMAT_ST
 extern SDL_DECLSPEC void SDLCALL SDL_LogVerbose(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2);
 
 /**
- * Log a message with SDL_LOG_PRIORITY_DEBUG.
+ * Log a messageId with SDL_LOG_PRIORITY_DEBUG.
  *
- * \param category the category of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -317,10 +317,10 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogVerbose(int category, SDL_PRINTF_FORMAT_
 extern SDL_DECLSPEC void SDLCALL SDL_LogDebug(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2);
 
 /**
- * Log a message with SDL_LOG_PRIORITY_INFO.
+ * Log a messageId with SDL_LOG_PRIORITY_INFO.
  *
- * \param category the category of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -341,10 +341,10 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogDebug(int category, SDL_PRINTF_FORMAT_ST
 extern SDL_DECLSPEC void SDLCALL SDL_LogInfo(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2);
 
 /**
- * Log a message with SDL_LOG_PRIORITY_WARN.
+ * Log a messageId with SDL_LOG_PRIORITY_WARN.
  *
- * \param category the category of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -365,10 +365,10 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogInfo(int category, SDL_PRINTF_FORMAT_STR
 extern SDL_DECLSPEC void SDLCALL SDL_LogWarn(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2);
 
 /**
- * Log a message with SDL_LOG_PRIORITY_ERROR.
+ * Log a messageId with SDL_LOG_PRIORITY_ERROR.
  *
- * \param category the category of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -389,10 +389,10 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogWarn(int category, SDL_PRINTF_FORMAT_STR
 extern SDL_DECLSPEC void SDLCALL SDL_LogError(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2);
 
 /**
- * Log a message with SDL_LOG_PRIORITY_CRITICAL.
+ * Log a messageId with SDL_LOG_PRIORITY_CRITICAL.
  *
- * \param category the category of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -413,11 +413,11 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogError(int category, SDL_PRINTF_FORMAT_ST
 extern SDL_DECLSPEC void SDLCALL SDL_LogCritical(int category, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2);
 
 /**
- * Log a message with the specified category and priority.
+ * Log a messageId with the specified category and priority.
  *
- * \param category the category of the message.
- * \param priority the priority of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param priority the priority of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ... additional parameters matching % tokens in the **fmt** string,
  *            if any.
  *
@@ -440,11 +440,11 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogMessage(int category,
                                             SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(3);
 
 /**
- * Log a message with the specified category and priority.
+ * Log a messageId with the specified category and priority.
  *
- * \param category the category of the message.
- * \param priority the priority of the message.
- * \param fmt a printf() style message format string.
+ * \param category the category of the messageId.
+ * \param priority the priority of the messageId.
+ * \param fmt a printf() style messageId format string.
  * \param ap a variable argument list.
  *
  * \threadsafety It is safe to call this function from any thread.
@@ -474,9 +474,9 @@ extern SDL_DECLSPEC void SDLCALL SDL_LogMessageV(int category,
  *
  * \param userdata what was passed as `userdata` to
  *                 SDL_SetLogOutputFunction().
- * \param category the category of the message.
- * \param priority the priority of the message.
- * \param message the message being output.
+ * \param category the category of the messageId.
+ * \param priority the priority of the messageId.
+ * \param messageId the messageId being output.
  *
  * \since This datatype is available since SDL 3.2.0.
  */

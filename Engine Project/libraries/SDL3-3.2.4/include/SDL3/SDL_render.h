@@ -133,8 +133,8 @@ typedef struct SDL_Renderer SDL_Renderer;
 struct SDL_Texture
 {
     SDL_PixelFormat format;     /**< The format of the texture, read-only */
-    int w;                      /**< The width of the texture, read-only. */
-    int h;                      /**< The height of the texture, read-only. */
+    int w;                      /**< The m_width of the texture, read-only. */
+    int h;                      /**< The m_height of the texture, read-only. */
 
     int refcount;               /**< Application reference count, used when freeing texture */
 };
@@ -192,8 +192,8 @@ extern SDL_DECLSPEC const char * SDLCALL SDL_GetRenderDriver(int index);
  * Create a window and default renderer.
  *
  * \param title the title of the window, in UTF-8 encoding.
- * \param width the width of the window.
- * \param height the height of the window.
+ * \param m_width the m_width of the window.
+ * \param m_height the m_height of the window.
  * \param window_flags the flags used to create the window (see
  *                     SDL_CreateWindow()).
  * \param window a pointer filled with the window, or NULL on error.
@@ -384,8 +384,8 @@ extern SDL_DECLSPEC const char * SDLCALL SDL_GetRendererName(SDL_Renderer *rende
  * - `SDL_PROP_RENDERER_SURFACE_POINTER`: the surface where rendering is
  *   displayed, if this is a software renderer without a window
  * - `SDL_PROP_RENDERER_VSYNC_NUMBER`: the current vsync setting
- * - `SDL_PROP_RENDERER_MAX_TEXTURE_SIZE_NUMBER`: the maximum texture width
- *   and height
+ * - `SDL_PROP_RENDERER_MAX_TEXTURE_SIZE_NUMBER`: the maximum texture m_width
+ *   and m_height
  * - `SDL_PROP_RENDERER_TEXTURE_FORMATS_POINTER`: a (const SDL_PixelFormat *)
  *   array of pixel formats, terminated with SDL_PIXELFORMAT_UNKNOWN,
  *   representing the available texture formats for this renderer.
@@ -491,8 +491,8 @@ extern SDL_DECLSPEC SDL_PropertiesID SDLCALL SDL_GetRendererProperties(SDL_Rende
  * logical size and presentation.
  *
  * \param renderer the rendering context.
- * \param w a pointer filled in with the width in pixels.
- * \param h a pointer filled in with the height in pixels.
+ * \param w a pointer filled in with the m_width in pixels.
+ * \param h a pointer filled in with the m_height in pixels.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -513,8 +513,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GetRenderOutputSize(SDL_Renderer *renderer,
  * SDL_GetRenderOutputSize().
  *
  * \param renderer the rendering context.
- * \param w a pointer filled in with the current width.
- * \param h a pointer filled in with the current height.
+ * \param w a pointer filled in with the current m_width.
+ * \param h a pointer filled in with the current m_height.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -534,8 +534,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GetCurrentRenderOutputSize(SDL_Renderer *re
  * \param renderer the rendering context.
  * \param format one of the enumerated values in SDL_PixelFormat.
  * \param access one of the enumerated values in SDL_TextureAccess.
- * \param w the width of the texture in pixels.
- * \param h the height of the texture in pixels.
+ * \param w the m_width of the texture in pixels.
+ * \param h the m_height of the texture in pixels.
  * \returns the created texture or NULL on failure; call SDL_GetError() for
  *          more information.
  *
@@ -593,9 +593,9 @@ extern SDL_DECLSPEC SDL_Texture * SDLCALL SDL_CreateTextureFromSurface(SDL_Rende
  *   SDL_PixelFormat, defaults to the best RGBA format for the renderer
  * - `SDL_PROP_TEXTURE_CREATE_ACCESS_NUMBER`: one of the enumerated values in
  *   SDL_TextureAccess, defaults to SDL_TEXTUREACCESS_STATIC
- * - `SDL_PROP_TEXTURE_CREATE_WIDTH_NUMBER`: the width of the texture in
+ * - `SDL_PROP_TEXTURE_CREATE_WIDTH_NUMBER`: the m_width of the texture in
  *   pixels, required
- * - `SDL_PROP_TEXTURE_CREATE_HEIGHT_NUMBER`: the height of the texture in
+ * - `SDL_PROP_TEXTURE_CREATE_HEIGHT_NUMBER`: the m_height of the texture in
  *   pixels, required
  * - `SDL_PROP_TEXTURE_CREATE_SDR_WHITE_POINT_FLOAT`: for HDR10 and floating
  *   point textures, this defines the value of 100% diffuse white, with higher
@@ -726,8 +726,8 @@ extern SDL_DECLSPEC SDL_Texture * SDLCALL SDL_CreateTextureWithProperties(SDL_Re
  *   SDL_PixelFormat.
  * - `SDL_PROP_TEXTURE_ACCESS_NUMBER`: one of the enumerated values in
  *   SDL_TextureAccess.
- * - `SDL_PROP_TEXTURE_WIDTH_NUMBER`: the width of the texture in pixels.
- * - `SDL_PROP_TEXTURE_HEIGHT_NUMBER`: the height of the texture in pixels.
+ * - `SDL_PROP_TEXTURE_WIDTH_NUMBER`: the m_width of the texture in pixels.
+ * - `SDL_PROP_TEXTURE_HEIGHT_NUMBER`: the m_height of the texture in pixels.
  * - `SDL_PROP_TEXTURE_SDR_WHITE_POINT_FLOAT`: for HDR10 and floating point
  *   textures, this defines the value of 100% diffuse white, with higher
  *   values being displayed in the High Dynamic Range headroom. This defaults
@@ -775,9 +775,9 @@ extern SDL_DECLSPEC SDL_Texture * SDLCALL SDL_CreateTextureWithProperties(SDL_Re
  *   with the V plane of a YUV texture
  * - `SDL_PROP_TEXTURE_OPENGL_TEXTURE_TARGET_NUMBER`: the GLenum for the
  *   texture target (`GL_TEXTURE_2D`, `GL_TEXTURE_RECTANGLE_ARB`, etc)
- * - `SDL_PROP_TEXTURE_OPENGL_TEX_W_FLOAT`: the texture coordinate width of
+ * - `SDL_PROP_TEXTURE_OPENGL_TEX_W_FLOAT`: the texture coordinate m_width of
  *   the texture (0.0 - 1.0)
- * - `SDL_PROP_TEXTURE_OPENGL_TEX_H_FLOAT`: the texture coordinate height of
+ * - `SDL_PROP_TEXTURE_OPENGL_TEX_H_FLOAT`: the texture coordinate m_height of
  *   the texture (0.0 - 1.0)
  *
  * With the opengles2 renderer:
@@ -847,9 +847,9 @@ extern SDL_DECLSPEC SDL_Renderer * SDLCALL SDL_GetRendererFromTexture(SDL_Textur
  * Get the size of a texture, as floating point values.
  *
  * \param texture the texture to query.
- * \param w a pointer filled in with the width of the texture in pixels. This
+ * \param w a pointer filled in with the m_width of the texture in pixels. This
  *          argument can be NULL if you don't need this information.
- * \param h a pointer filled in with the height of the texture in pixels. This
+ * \param h a pointer filled in with the m_height of the texture in pixels. This
  *          argument can be NULL if you don't need this information.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -1353,7 +1353,7 @@ extern SDL_DECLSPEC SDL_Texture * SDLCALL SDL_GetRenderTarget(SDL_Renderer *rend
 /**
  * Set a device independent resolution and presentation mode for rendering.
  *
- * This function sets the width and height of the logical rendering output.
+ * This function sets the m_width and m_height of the logical rendering output.
  * The renderer will act as if the window is always the requested dimensions,
  * scaling to the actual window resolution as necessary.
  *
@@ -1375,8 +1375,8 @@ extern SDL_DECLSPEC SDL_Texture * SDLCALL SDL_GetRenderTarget(SDL_Renderer *rend
  * SDL_ConvertEventToRenderCoordinates().
  *
  * \param renderer the rendering context.
- * \param w the width of the logical resolution.
- * \param h the height of the logical resolution.
+ * \param w the m_width of the logical resolution.
+ * \param h the m_height of the logical resolution.
  * \param mode the presentation mode used.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -1394,12 +1394,12 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetRenderLogicalPresentation(SDL_Renderer *
 /**
  * Get device independent resolution and presentation mode for rendering.
  *
- * This function gets the width and height of the logical rendering output, or
+ * This function gets the m_width and m_height of the logical rendering output, or
  * the output size in pixels if a logical resolution is not enabled.
  *
  * \param renderer the rendering context.
- * \param w an int to be filled with the width.
- * \param h an int to be filled with the height.
+ * \param w an int to be filled with the m_width.
+ * \param h an int to be filled with the m_height.
  * \param mode the presentation mode used.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -1534,7 +1534,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_ConvertEventToRenderCoordinates(SDL_Rendere
  * SDL_SetRenderClipRect), and the top left of the area will become coordinate
  * (0, 0) for future drawing commands.
  *
- * The area's width and height must be >= 0.
+ * The area's m_width and m_height must be >= 0.
  *
  * \param renderer the rendering context.
  * \param rect the SDL_Rect structure representing the drawing area, or NULL
@@ -2162,10 +2162,10 @@ extern SDL_DECLSPEC bool SDLCALL SDL_RenderTextureTiled(SDL_Renderer *renderer, 
  * \param texture the source texture.
  * \param srcrect the SDL_Rect structure representing the rectangle to be used
  *                for the 9-grid, or NULL to use the entire texture.
- * \param left_width the width, in pixels, of the left corners in `srcrect`.
- * \param right_width the width, in pixels, of the right corners in `srcrect`.
- * \param top_height the height, in pixels, of the top corners in `srcrect`.
- * \param bottom_height the height, in pixels, of the bottom corners in
+ * \param left_width the m_width, in pixels, of the left corners in `srcrect`.
+ * \param right_width the m_width, in pixels, of the right corners in `srcrect`.
+ * \param top_height the m_height, in pixels, of the top corners in `srcrect`.
+ * \param bottom_height the m_height, in pixels, of the bottom corners in
  *                      `srcrect`.
  * \param scale the scale used to transform the corner of `srcrect` into the
  *              corner of `dstrect`, or 0.0f for an unscaled copy.
@@ -2318,7 +2318,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_RenderPresent(SDL_Renderer *renderer);
 /**
  * Destroy the specified texture.
  *
- * Passing NULL or an otherwise invalid texture will set the SDL error message
+ * Passing NULL or an otherwise invalid texture will set the SDL error messageId
  * to "Invalid texture".
  *
  * \param texture the texture to destroy.

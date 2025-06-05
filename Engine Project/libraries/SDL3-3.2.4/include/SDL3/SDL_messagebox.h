@@ -22,17 +22,17 @@
 /**
  * # CategoryMessagebox
  *
- * SDL offers a simple message box API, which is useful for simple alerts,
+ * SDL offers a simple messageId box API, which is useful for simple alerts,
  * such as informing the user when something fatal happens at startup without
  * the need to build a UI for it (or informing the user _before_ your UI is
  * ready).
  *
- * These message boxes are native system dialogs where possible.
+ * These messageId boxes are native system dialogs where possible.
  *
  * There is both a customizable function (SDL_ShowMessageBox()) that offers
  * lots of options for what to display and reports on what choice the user
  * made, and also a much-simplified version (SDL_ShowSimpleMessageBox()),
- * merely takes a text message and title, and waits until the user presses a
+ * merely takes a text messageId and title, and waits until the user presses a
  * single "OK" UI button. Often, this is all that is necessary.
  */
 
@@ -50,7 +50,7 @@ extern "C" {
 #endif
 
 /**
- * Message box flags.
+ * EnqueueMessage box flags.
  *
  * If supported will display warning icon, etc.
  *
@@ -87,7 +87,7 @@ typedef struct SDL_MessageBoxButtonData
 } SDL_MessageBoxButtonData;
 
 /**
- * RGB value used in a message box color scheme
+ * RGB value used in a messageId box color scheme
  *
  * \since This struct is available since SDL 3.2.0.
  */
@@ -111,7 +111,7 @@ typedef enum SDL_MessageBoxColorType
 } SDL_MessageBoxColorType;
 
 /**
- * A set of colors to use for message box dialogs
+ * A set of colors to use for messageId box dialogs
  *
  * \since This struct is available since SDL 3.2.0.
  */
@@ -130,7 +130,7 @@ typedef struct SDL_MessageBoxData
     SDL_MessageBoxFlags flags;
     SDL_Window *window;                 /**< Parent window, can be NULL */
     const char *title;                  /**< UTF-8 title */
-    const char *message;                /**< UTF-8 message text */
+    const char *message;                /**< UTF-8 messageId text */
 
     int numbuttons;
     const SDL_MessageBoxButtonData *buttons;
@@ -139,7 +139,7 @@ typedef struct SDL_MessageBoxData
 } SDL_MessageBoxData;
 
 /**
- * Create a modal message box.
+ * Create a modal messageId box.
  *
  * If your needs aren't complex, it might be easier to use
  * SDL_ShowSimpleMessageBox.
@@ -175,7 +175,7 @@ typedef struct SDL_MessageBoxData
 extern SDL_DECLSPEC bool SDLCALL SDL_ShowMessageBox(const SDL_MessageBoxData *messageboxdata, int *buttonid);
 
 /**
- * Display a simple modal message box.
+ * Display a simple modal messageId box.
  *
  * If your needs aren't complex, this function is preferred over
  * SDL_ShowMessageBox.
@@ -205,7 +205,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_ShowMessageBox(const SDL_MessageBoxData *me
  *
  * \param flags an SDL_MessageBoxFlags value.
  * \param title UTF-8 title text.
- * \param message UTF-8 message text.
+ * \param messageId UTF-8 messageId text.
  * \param window the parent window, or NULL for no parent.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.

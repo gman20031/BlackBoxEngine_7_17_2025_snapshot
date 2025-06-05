@@ -1,4 +1,4 @@
-<Enemy>
+<Actor>
     <Component Name="TranslationComponent">
         <Velocity>
             <X>0</X>
@@ -18,5 +18,11 @@
         <height>64</height>
         <filePath>../Assets/Darknut.png</filePath>
     </Component>
-
-</Enemy>
+	<Component Name="MovementBlocker"/>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+</Actor>

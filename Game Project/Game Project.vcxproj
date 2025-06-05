@@ -96,6 +96,7 @@
       <LanguageStandard>stdcpp23</LanguageStandard>
       <UseFullPaths>false</UseFullPaths>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(solutionDir)Engine Project;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,9 +150,10 @@ copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_ttf
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <UseFullPaths>false</UseFullPaths>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine Project\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,9 +179,10 @@ copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_ttf
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <UseFullPaths>false</UseFullPaths>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine Project\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -200,14 +203,28 @@ copy "$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)\SDL3_ttf
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameActors\Door.cpp" />
+    <ClCompile Include="GameActors\Enemy.cpp" />
+    <ClCompile Include="GameActors\Goal.cpp" />
+    <ClCompile Include="GameActors\Key.cpp" />
     <ClCompile Include="GameComponentRegistrar.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerCharacter\GameTestingComponent.cpp" />
+    <ClCompile Include="PlayerCharacter\PlayerHealth.cpp" />
+    <ClCompile Include="PlayerCharacter\PlayerHealth.h" />
     <ClCompile Include="PlayerCharacter\PlayerMovement.cpp" />
+    <ClCompile Include="PlayerCharacter\PlayerReaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameActors\Door.h" />
+    <ClInclude Include="GameActors\Enemy.h" />
+    <ClInclude Include="GameActors\Goal.h" />
+    <ClInclude Include="GameActors\Key.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="PlayerCharacter\GameTestingComponent.h" />
     <ClInclude Include="PlayerCharacter\PlayerMovement.h" />
+    <ClInclude Include="PlayerCharacter\PlayerReaction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,21 @@
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>0</X>
+            <Y>0</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>

@@ -156,7 +156,7 @@ typedef enum SDL_EventType
     SDL_EVENT_WINDOW_OCCLUDED,          /**< The window has been occluded */
     SDL_EVENT_WINDOW_ENTER_FULLSCREEN,  /**< The window has entered fullscreen mode */
     SDL_EVENT_WINDOW_LEAVE_FULLSCREEN,  /**< The window has left fullscreen mode */
-    SDL_EVENT_WINDOW_DESTROYED,         /**< The window with the associated ID is being or has been destroyed. If this message is being handled
+    SDL_EVENT_WINDOW_DESTROYED,         /**< The window with the associated ID is being or has been destroyed. If this messageId is being handled
                                              in an event watcher, the window handle is still valid and can still be used to retrieve any properties
                                              associated with the window. Otherwise, the handle has already been destroyed and all resources
                                              associated with it are invalid */

@@ -86,8 +86,8 @@ typedef struct SDLTest_TextWindow
  *
  *  \param x The X coordinate of the upper left corner of the window.
  *  \param y The Y coordinate of the upper left corner of the window.
- *  \param w The width of the window (currently ignored)
- *  \param h The height of the window (currently ignored)
+ *  \param w The m_width of the window (currently ignored)
+ *  \param h The m_height of the window (currently ignored)
  *
  *  \returns the new window, or NULL on failure.
  *

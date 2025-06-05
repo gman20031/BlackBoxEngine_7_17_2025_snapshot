@@ -22,7 +22,7 @@
 /**
  * # CategoryError
  *
- * Simple error message routines for SDL.
+ * Simple error messageId routines for SDL.
  *
  * Most apps will interface with these APIs in exactly one function: when
  * almost any SDL function call reports failure, you can get a human-readable
@@ -60,9 +60,9 @@ extern "C" {
 
 
 /**
- * Set the SDL error message for the current thread.
+ * Set the SDL error messageId for the current thread.
  *
- * Calling this function will replace any previous error message that was set.
+ * Calling this function will replace any previous error messageId that was set.
  *
  * This function always returns false, since SDL frequently uses false to
  * signify a failing result, leading to this idiom:
@@ -73,7 +73,7 @@ extern "C" {
  * }
  * ```
  *
- * \param fmt a printf()-style message format string.
+ * \param fmt a printf()-style messageId format string.
  * \param ... additional parameters matching % tokens in the `fmt` string, if
  *            any.
  * \returns false.
@@ -89,11 +89,11 @@ extern "C" {
 extern SDL_DECLSPEC bool SDLCALL SDL_SetError(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(1);
 
 /**
- * Set the SDL error message for the current thread.
+ * Set the SDL error messageId for the current thread.
  *
- * Calling this function will replace any previous error message that was set.
+ * Calling this function will replace any previous error messageId that was set.
  *
- * \param fmt a printf()-style message format string.
+ * \param fmt a printf()-style messageId format string.
  * \param ap a variable argument list.
  * \returns false.
  *
@@ -121,13 +121,13 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetErrorV(SDL_PRINTF_FORMAT_STRING const ch
 extern SDL_DECLSPEC bool SDLCALL SDL_OutOfMemory(void);
 
 /**
- * Retrieve a message about the last error that occurred on the current
+ * Retrieve a messageId about the last error that occurred on the current
  * thread.
  *
  * It is possible for multiple errors to occur before calling SDL_GetError().
  * Only the last error is returned.
  *
- * The message is only applicable when an SDL function has signaled an error.
+ * The messageId is only applicable when an SDL function has signaled an error.
  * You must check the return values of SDL function calls to determine when to
  * appropriately call SDL_GetError(). You should *not* use the results of
  * SDL_GetError() to decide if an error has occurred! Sometimes SDL will set
@@ -144,8 +144,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_OutOfMemory(void);
  * the current thread's error string is changed. The caller should make a copy
  * if the value is needed after the next SDL API call.
  *
- * \returns a message with information about the specific error that occurred,
- *          or an empty string if there hasn't been an error message set since
+ * \returns a messageId with information about the specific error that occurred,
+ *          or an empty string if there hasn't been an error messageId set since
  *          the last call to SDL_ClearError().
  *
  * \threadsafety It is safe to call this function from any thread.
@@ -158,7 +158,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_OutOfMemory(void);
 extern SDL_DECLSPEC const char * SDLCALL SDL_GetError(void);
 
 /**
- * Clear any previous error message for this thread.
+ * Clear any previous error messageId for this thread.
  *
  * \returns true.
  *

@@ -66,7 +66,7 @@ extern __inline int _SDL_bsr_watcom(Uint32);
 SDL_FORCE_INLINE int SDL_MostSignificantBitIndex32(Uint32 x)
 {
 #if defined(__GNUC__) && (__GNUC__ >= 4 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4))
-    /* Count Leading Zeroes builtin in GCC.
+    /* ActorCount Leading Zeroes builtin in GCC.
      * http://gcc.gnu.org/onlinedocs/gcc-4.3.4/gcc/Other-Builtins.html
      */
     if (x == 0) {

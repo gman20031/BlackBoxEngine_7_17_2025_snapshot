@@ -102,7 +102,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src;$(solutiondir)Engine Project\libraries\zlib-1.3.1\include</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
@@ -117,8 +117,8 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform);$(solutiondir)Engine Project\libraries\zlib-1.3.1\$(platform)\$(configuration)</AdditionalLibraryDirectories>
       <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
@@ -131,7 +131,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src;$(solutiondir)Engine Project\libraries\zlib-1.3.1\include</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
@@ -148,8 +148,8 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform);$(solutiondir)Engine Project\libraries\zlib-1.3.1\$(platform)\$(configuration)</AdditionalLibraryDirectories>
       <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
@@ -158,9 +158,9 @@
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src;$(solutiondir)Engine Project\libraries\zlib-1.3.1\include</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
@@ -175,8 +175,8 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform);$(solutiondir)Engine Project\libraries\zlib-1.3.1\$(platform)\$(configuration)</AdditionalLibraryDirectories>
       <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
@@ -187,9 +187,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_image;$(solutiondir)Engine Project\libraries\SDL3-3.2.4\include\SDL3_ttf;$(solutiondir)Engine Project\libraries\Lua-4.5.7\src;$(solutiondir)Engine Project\libraries\zlib-1.3.1\include</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
     </ClCompile>
@@ -206,43 +206,57 @@
       </Command>
     </PostBuildEvent>
     <Lib>
-      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL3.lib;SDL3_test.lib;SDL3_image.lib;SDL3_ttf.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(solutiondir)Engine Project\libraries\SDL3-3.2.4\lib\$(platform);$(solutiondir)Engine Project\libraries\zlib-1.3.1\$(platform)\$(configuration)</AdditionalLibraryDirectories>
       <Name>BlackBox</Name>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actors\ActorManager.cpp" />
     <ClCompile Include="Actors\Actor.cpp" />
+    <ClCompile Include="Actors\Collision\AABBColliderComponent.cpp" />
+    <ClCompile Include="Actors\Collision\BoundingBox.cpp" />
+    <ClCompile Include="Actors\Collision\ColliderBorder.cpp" />
+    <ClCompile Include="Actors\Collision\CollisionManager.cpp" />
     <ClCompile Include="Actors\ComponentFactory.cpp" />
-    <ClCompile Include="Actors\EngineComponents\EngineComponentRegistrar.cpp" />
+    <ClCompile Include="Actors\EngineComponents\MovementBlocker.cpp" />
+    <ClCompile Include="Actors\EngineComponents\MoverComponent.cpp" />
+    <ClCompile Include="Actors\EngineComponents\ColliderDebugRenderer.cpp" />
+    <ClCompile Include="Actors\EngineComponents\ColliderDebugRenderer.h" />
     <ClCompile Include="Actors\EngineComponents\SpriteComponent.cpp" />
-    <ClCompile Include="Actors\EngineComponents\TranslationComponent.cpp" />
-    <ClCompile Include="Actors\EngineComponents\TranslationComponent.h" />
+    <ClCompile Include="Actors\EngineComponents\TransformComponent.cpp" />
+    <ClCompile Include="Actors\EngineComponents\TransformComponent.h" />
     <ClCompile Include="Graphics\Scene.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\KeyCodes.cpp" />
     <ClCompile Include="Input\KeyCodes.h" />
+    <ClCompile Include="Resources\DataFactory.cpp" />
+    <ClCompile Include="Resources\ResourceManager.cpp" />
+    <ClCompile Include="Resources\XML\BlackBoxXMLParser.cpp" />
+    <ClCompile Include="Resources\XML\tinyxml2.cpp" />
     <ClCompile Include="System\ConsoleManip.cpp" />
-    <ClCompile Include="System\FVector2.cpp" />
+    <ClCompile Include="Math\FVector2.cpp" />
     <ClCompile Include="System\Log.cpp" />
-    <ClCompile Include="EngineManager.cpp" />
+    <ClCompile Include="BlackBoxManager.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\RenderingStructs.h" />
     <ClCompile Include="Graphics\Texture.cpp" />
-    <ClCompile Include="Graphics\TextureFactory.cpp" />
+    <ClCompile Include="Resources\TextureFactory.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="System\MessageManager.cpp" />
     <ClCompile Include="System\SimpleTimingSystem.cpp" />
-    <ClCompile Include="System\XML\BlackBoxXMLParser.cpp" />
-    <ClCompile Include="System\XML\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actors\ActorManager.h" />
     <ClInclude Include="Actors\Actor.h" />
+    <ClInclude Include="Actors\Collision\AABBColliderComponent.h" />
+    <ClInclude Include="Actors\Collision\BoundingBox.h" />
+    <ClInclude Include="Actors\Collision\CollisionManager.h" />
     <ClInclude Include="Actors\Component.h" />
     <ClInclude Include="Actors\ComponentFactory.h" />
-    <ClInclude Include="Actors\EngineComponents\ComponentTemplate.txt" />
+    <ClInclude Include="Actors\Collision\ColliderBorder.h" />
+    <ClInclude Include="Actors\EngineComponents\MovementBlocker.h" />
+    <ClInclude Include="Actors\EngineComponents\MoverComponent.h" />
     <ClInclude Include="Actors\EngineComponents\SpriteComponent.h" />
     <ClInclude Include="Graphics\Scene.h" />
     <ClInclude Include="Input\InputManager.h" />
@@ -333,24 +347,26 @@
     <ClInclude Include="libraries\SDL3-3.2.4\include\SDL3\SDL_vulkan.h" />
     <ClInclude Include="libraries\SDL3-3.2.4\include\SDL3_image\SDL_image.h" />
     <ClInclude Include="libraries\SDL3-3.2.4\include\SDL3_ttf\SDL_ttf.h" />
+    <ClInclude Include="Resources\DataFactory.h" />
+    <ClInclude Include="Resources\ResourceManager.h" />
+    <ClInclude Include="Resources\XML\BlackBoxXMLParser.h" />
+    <ClInclude Include="Resources\XML\tinyxml2.h" />
     <ClInclude Include="System\ConsoleManip.h" />
-    <ClInclude Include="System\FVector2.h" />
+    <ClInclude Include="Math\FVector2.h" />
+    <ClInclude Include="System\Debugging.h" />
     <ClInclude Include="System\MessageManager.h" />
     <ClInclude Include="System\Observer.h" />
     <ClInclude Include="System\Log.h" />
-    <ClInclude Include="System\NumericalConcepts.h" />
-    <ClInclude Include="System\Random.h" />
+    <ClInclude Include="Math\NumericalConcepts.h" />
+    <ClInclude Include="Math\Random.h" />
     <ClInclude Include="System\SimpleTimingSystem.h" />
     <ClInclude Include="System\StringHash.h" />
-    <ClInclude Include="EngineManager.h" />
+    <ClInclude Include="BlackBoxManager.h" />
     <ClInclude Include="Graphics\Color.h" />
     <ClInclude Include="Graphics\Renderer.h" />
-    <ClInclude Include="Graphics\GraphicsManager.h" />
     <ClInclude Include="Graphics\Texture.h" />
-    <ClInclude Include="Graphics\TextureFactory.h" />
+    <ClInclude Include="Resources\TextureFactory.h" />
     <ClInclude Include="Graphics\Window.h" />
-    <ClInclude Include="System\XML\BlackBoxXMLParser.h" />
-    <ClInclude Include="System\XML\tinyxml2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

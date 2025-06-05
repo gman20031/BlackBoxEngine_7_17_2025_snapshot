@@ -8,7 +8,7 @@ namespace BlackBoxEngine
         return map;
     }
 
-    void SimpleTimer::StartTimer(const std::string& name)
+    void SimpleTimer::StartGlobalTimer(const std::string& name)
     {
         Map()[name] = ClockType::now();
     }
@@ -17,6 +17,14 @@ namespace BlackBoxEngine
     {
         auto duration = ClockType::now() - Map()[name];
         return  std::chrono::duration_cast<std::chrono::milliseconds>(duration);
+    }
+
+    double SimpleTimer::GetDeltaTime() const
+    {
+        using namespace std::chrono;
+        nanoseconds nanoDelta = (ClockType::now() - m_startTime);
+        double secondsDelta = (double)nanoDelta.count() / (double)std::nano::den;
+        return secondsDelta;
     }
 
 }

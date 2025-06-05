@@ -475,7 +475,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_CaptureMouse(bool enabled);
  *
  * `mask` has to be in MSB (Most Significant Bit) format.
  *
- * The cursor width (`w`) must be a multiple of 8 bits.
+ * The cursor m_width (`w`) must be a multiple of 8 bits.
  *
  * The cursor is created in black and white according to the following:
  *
@@ -496,8 +496,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_CaptureMouse(bool enabled);
  *
  * \param data the color value for each pixel of the cursor.
  * \param mask the mask value for each pixel of the cursor.
- * \param w the width of the cursor.
- * \param h the height of the cursor.
+ * \param w the m_width of the cursor.
+ * \param h the m_height of the cursor.
  * \param hot_x the x-axis offset from the left of the cursor image to the
  *              mouse x position, in the range of 0 to `w` - 1.
  * \param hot_y the y-axis offset from the top of the cursor image to the

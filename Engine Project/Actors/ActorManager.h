@@ -7,28 +7,28 @@ namespace BlackBoxEngine
 {
     class ActorManager
     {
-        friend struct BB_Scene;
     public:
         using ActorPtr = std::unique_ptr<Actor>;
     private:
         std::unordered_map<Actor::Id , ActorPtr> m_allActors;
+        std::vector<Actor::Id> m_unsuedIds;
+        std::vector<Actor::Id> m_destroyQueue;
 
-        BB_Scene* m_pOwningScene = nullptr;
-
-        Actor::Id m_nextActorId = 0;
         Actor::Id m_highestId = 0;
 
     private:
         Actor::Id NextId();
+        void RemoveQueuedActors();
     public:
-        BB_Scene* OwningScene() const { return m_pOwningScene; }
 
         const ActorPtr& NewActor();
         const ActorPtr& LoadActor(const char* filePath);
-        void RemoveActor(Actor::Id id);
+        void LoadLevel(const char* filePath);
+        void DestroyActor(Actor::Id id);
+        void DestroyActor(Actor* pActor);
         
         void Update();
-        void Start();
+        void Start(); // where the hell should I call this?
         void Render();
     };
 

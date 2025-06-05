@@ -9,15 +9,23 @@ namespace BlackBoxEngine
 
     void InputManager::AddKeyDown(KeyCode key)
     {
+        if (m_keyCodes.contains(key))
+            return;
+
         m_keyCodes.emplace(key);
         m_observers[(size_t)InputType::kKeyDown].PushEvent(key);
         if constexpr (kLogInputData)
             BB_LOG(LogType::kMessage, "Key down : ", key);
-
     }
 
     void InputManager::RemoveKeyDown(KeyCode key)
     {
+        if (!m_keyCodes.contains(key))
+        {
+            BB_LOG(LogType::kError, "Attempting to remove key that was not pressed");
+            return;
+        }
+
         m_keyCodes.erase(key);
         m_observers[(size_t)InputType::kKeyUp].PushEvent(key);
         if constexpr (kLogInputData)
@@ -29,9 +37,9 @@ namespace BlackBoxEngine
         return m_keyCodes.contains(key);
     }
 
-    InputManager::CallBackId InputManager::SubscribeKey(Callback&& function, KeyCode key, InputType type)
+    InputManager::CallBackId InputManager::SubscribeToKey( KeyCode key, InputType type , Callback&& function)
     {
-        return m_observers[(size_t)type].RegisterListener(std::forward<Callback>(function), key);
+        return m_observers[(size_t)type].RegisterListener( key , std::forward<Callback>(function));
     }
 
     void InputManager::UnsubscribeKey(CallBackId id, InputType type)
@@ -39,9 +47,9 @@ namespace BlackBoxEngine
         m_observers[(size_t)type].RemoveListener(id);
     }
 
-    void InputManager::UnsubscribeKeyHint(CallBackId id, InputType type, KeyCode key)
+    void InputManager::UnsubscribeKeyWithCode(CallBackId id, InputType type, KeyCode key)
     {
-        m_observers[(size_t)type].RemoveListenerHint(id, key);
+        m_observers[(size_t)type].RemoveListenerWithEvent(id, key);
     }
 
     void InputManager::Update()

@@ -5,7 +5,7 @@
 #include "stdint.h"
 
 #include "Component.h"
-#include "../System/XML/BlackBoxXMLParser.h"
+#include "../Resources/XML/BlackBoxXMLParser.h"
 
 namespace BlackBoxEngine
 {
@@ -33,17 +33,19 @@ namespace BlackBoxEngine
         Actor& operator=(const Actor&) = delete;
         Actor& operator=(Actor&&) = default;
 
+        Id GetId() const { return m_id; }
         ActorManager* Manager() const { return m_pActorManager; }
 
         bool ParseComponent(const XMLElementParser componentParser);
 		template<SubComponent ComponentType, typename ...Args> ComponentType* AddComponent(Args&&... args);
         Component* AddComponent(Component::Id componentId);
-		[[nodiscard("Component Unused")]] Component* GetComponent(Id componentId);
+		[[nodiscard("Component Unused")]] Component* GetComponent(uint32_t componentId);
         template<SubComponent ComponentType> [[nodiscard("Component Unused")]] ComponentType* GetComponent();
 
 		void Update();
 		void Render();
-		void Start();
+        void Start();
+        void Collided(Actor* pOther);
 	};
 
 	template<SubComponent ComponentType , typename ...Args>

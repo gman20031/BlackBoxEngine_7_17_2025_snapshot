@@ -1795,15 +1795,15 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL IMG_LoadWEBP_IO(SDL_IOStream *src);
  * Since SVG files are resolution-independent, you specify the size you would
  * like the output image to be and it will be generated at those dimensions.
  *
- * Either width or height may be 0 and the image will be auto-sized to
+ * Either m_width or m_height may be 0 and the image will be auto-sized to
  * preserve aspect ratio.
  *
  * When done with the returned surface, the app should dispose of it with a
  * call to SDL_DestroySurface().
  *
  * \param src an SDL_IOStream to load SVG data from.
- * \param width desired width of the generated surface, in pixels.
- * \param height desired height of the generated surface, in pixels.
+ * \param m_width desired m_width of the generated surface, in pixels.
+ * \param m_height desired m_height of the generated surface, in pixels.
  * \returns a new SDL surface, or NULL on error.
  *
  * \since This function is available since SDL_image 3.0.0.

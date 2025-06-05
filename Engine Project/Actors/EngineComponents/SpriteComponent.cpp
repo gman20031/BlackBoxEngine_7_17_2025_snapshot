@@ -3,8 +3,8 @@
 #include <SDL.h>
 
 #include "../ActorManager.h"
-#include "../../Graphics/Scene.h"
-#include "../../Graphics/TextureFactory.h"
+#include "../../Resources/ResourceManager.h"
+#include "../../BlackBoxManager.h"
 #include "../../System/Log.h"
 
 namespace BlackBoxEngine
@@ -12,17 +12,15 @@ namespace BlackBoxEngine
     SpriteComponent::SpriteComponent(Actor* pOwner)
         : Component(pOwner)
     {
-        m_pTranslationComponent = FindOrCreateComponent<TranslationComponent>(pOwner);
-        auto* pScene = pOwner->Manager()->OwningScene();
-        assert(pScene);
-        m_pRenderer = pScene->Renderer();
+        m_pTransform = pOwner->GetComponent<TransformComponent>();
+        m_pRenderer = BlackBoxManager::Get()->GetWindow()->GetRenderer();
     }
 
     void SpriteComponent::SetTexture(const char* pTexturePath)
     {
         assert(pTexturePath);
         m_pFilePath = pTexturePath;
-        m_pTexture = BB_TextureFactory::Create(m_pRenderer, pTexturePath);
+        m_pTexture = ResourceManager::GetTexture(m_pRenderer, pTexturePath);
     }
 
     void SpriteComponent::SetDimensions(const float width, const float height)
@@ -58,8 +56,8 @@ namespace BlackBoxEngine
             BB_LOG(LogType::kError, "Width or height is zero");
             return;
         }
-        float x = m_pTranslationComponent->m_position.x;
-        float y = m_pTranslationComponent->m_position.y;
+        float x = m_pTransform->m_position.x;
+        float y = m_pTransform->m_position.y;
         auto dest = BB_Rectangle(x , y , m_width, m_height);
         if ( !m_pRenderer->DrawTexture(m_pTexture.get() , nullptr , &dest ))
             BB_LOG(LogType::kError, SDL_GetError());

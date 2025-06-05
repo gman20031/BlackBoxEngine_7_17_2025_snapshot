@@ -138,8 +138,8 @@ typedef struct SDL_DisplayMode
 {
     SDL_DisplayID displayID;        /**< the display this mode is associated with */
     SDL_PixelFormat format;         /**< pixel format */
-    int w;                          /**< width */
-    int h;                          /**< height */
+    int w;                          /**< m_width */
+    int h;                          /**< m_height */
     float pixel_density;            /**< scale converting size to pixels (e.g. a 1920x1080 mode with 2.0 scale would have 3840x2160 pixels) */
     float refresh_rate;             /**< refresh rate (or 0.0f for unspecified) */
     int refresh_rate_numerator;     /**< precise refresh rate numerator (or 0 for unspecified) */
@@ -787,8 +787,8 @@ extern SDL_DECLSPEC SDL_DisplayMode ** SDLCALL SDL_GetFullscreenDisplayModes(SDL
  * small, then false is returned.
  *
  * \param displayID the instance ID of the display to query.
- * \param w the width in pixels of the desired display mode.
- * \param h the height in pixels of the desired display mode.
+ * \param w the m_width in pixels of the desired display mode.
+ * \param h the m_height in pixels of the desired display mode.
  * \param refresh_rate the refresh rate of the desired display mode, or 0.0f
  *                     for the desktop refresh rate.
  * \param include_high_density_modes boolean to include high density modes in
@@ -1107,8 +1107,8 @@ extern SDL_DECLSPEC SDL_Window ** SDLCALL SDL_GetWindows(int *count);
  * in a future version of SDL.
  *
  * \param title the title of the window, in UTF-8 encoding.
- * \param w the width of the window.
- * \param h the height of the window.
+ * \param w the m_width of the window.
+ * \param h the m_height of the window.
  * \param flags 0, or one or more SDL_WindowFlags OR'd together.
  * \returns the window that was created or NULL on failure; call
  *          SDL_GetError() for more information.
@@ -1168,8 +1168,8 @@ extern SDL_DECLSPEC SDL_Window * SDLCALL SDL_CreateWindow(const char *title, int
  *                 of the parent.
  * \param offset_y the y position of the popup window relative to the origin
  *                 of the parent window.
- * \param w the width of the window.
- * \param h the height of the window.
+ * \param w the m_width of the window.
+ * \param h the m_height of the window.
  * \param flags SDL_WINDOW_TOOLTIP or SDL_WINDOW_POPUP_MENU, and zero or more
  *              additional SDL_WindowFlags OR'd together.
  * \returns the window that was created or NULL on failure; call
@@ -1201,7 +1201,7 @@ extern SDL_DECLSPEC SDL_Window * SDLCALL SDL_CreatePopupWindow(SDL_Window *paren
  *   accept keyboard input (defaults true)
  * - `SDL_PROP_WINDOW_CREATE_FULLSCREEN_BOOLEAN`: true if the window should
  *   start in fullscreen mode at desktop resolution
- * - `SDL_PROP_WINDOW_CREATE_HEIGHT_NUMBER`: the height of the window
+ * - `SDL_PROP_WINDOW_CREATE_HEIGHT_NUMBER`: the m_height of the window
  * - `SDL_PROP_WINDOW_CREATE_HIDDEN_BOOLEAN`: true if the window should start
  *   hidden
  * - `SDL_PROP_WINDOW_CREATE_HIGH_PIXEL_DENSITY_BOOLEAN`: true if the window
@@ -1233,7 +1233,7 @@ extern SDL_DECLSPEC SDL_Window * SDLCALL SDL_CreatePopupWindow(SDL_Window *paren
  *   window, not showing in the task bar and window list
  * - `SDL_PROP_WINDOW_CREATE_VULKAN_BOOLEAN`: true if the window will be used
  *   with Vulkan rendering
- * - `SDL_PROP_WINDOW_CREATE_WIDTH_NUMBER`: the width of the window
+ * - `SDL_PROP_WINDOW_CREATE_WIDTH_NUMBER`: the m_width of the window
  * - `SDL_PROP_WINDOW_CREATE_X_NUMBER`: the x position of the window, or
  *   `SDL_WINDOWPOS_CENTERED`, defaults to `SDL_WINDOWPOS_UNDEFINED`. This is
  *   relative to the parent for windows with the "tooltip" or "menu" property
@@ -1716,8 +1716,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GetWindowPosition(SDL_Window *window, int *
  * this is just a request, it can be denied by the windowing system.
  *
  * \param window the window to change.
- * \param w the width of the window, must be > 0.
- * \param h the height of the window, must be > 0.
+ * \param w the m_width of the window, must be > 0.
+ * \param h the m_height of the window, must be > 0.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -1738,9 +1738,9 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetWindowSize(SDL_Window *window, int w, in
  * window is on a high pixel density display. Use SDL_GetWindowSizeInPixels()
  * or SDL_GetRenderOutputSize() to get the real client area size in pixels.
  *
- * \param window the window to query the width and height from.
- * \param w a pointer filled in with the width of the window, may be NULL.
- * \param h a pointer filled in with the height of the window, may be NULL.
+ * \param window the window to query the m_width and m_height from.
+ * \param w a pointer filled in with the m_width of the window, may be NULL.
+ * \param h a pointer filled in with the m_height of the window, may be NULL.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -1779,7 +1779,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GetWindowSafeArea(SDL_Window *window, SDL_R
 /**
  * Request that the aspect ratio of a window's client area be set.
  *
- * The aspect ratio is the ratio of width divided by height, e.g. 2560x1600
+ * The aspect ratio is the ratio of m_width divided by m_height, e.g. 2560x1600
  * would be 1.6. Larger aspect ratios are wider and smaller aspect ratios are
  * narrower.
  *
@@ -1820,7 +1820,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetWindowAspectRatio(SDL_Window *window, fl
 /**
  * Get the size of a window's client area.
  *
- * \param window the window to query the width and height from.
+ * \param window the window to query the m_width and m_height from.
  * \param min_aspect a pointer filled in with the minimum aspect ratio of the
  *                   window, may be NULL.
  * \param max_aspect a pointer filled in with the maximum aspect ratio of the
@@ -1877,9 +1877,9 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GetWindowBordersSize(SDL_Window *window, in
  * Get the size of a window's client area, in pixels.
  *
  * \param window the window from which the drawable size should be queried.
- * \param w a pointer to variable for storing the width in pixels, may be
+ * \param w a pointer to variable for storing the m_width in pixels, may be
  *          NULL.
- * \param h a pointer to variable for storing the height in pixels, may be
+ * \param h a pointer to variable for storing the m_height in pixels, may be
  *          NULL.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -1897,8 +1897,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GetWindowSizeInPixels(SDL_Window *window, i
  * Set the minimum size of a window's client area.
  *
  * \param window the window to change.
- * \param min_w the minimum width of the window, or 0 for no limit.
- * \param min_h the minimum height of the window, or 0 for no limit.
+ * \param min_w the minimum m_width of the window, or 0 for no limit.
+ * \param min_h the minimum m_height of the window, or 0 for no limit.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -1915,9 +1915,9 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetWindowMinimumSize(SDL_Window *window, in
  * Get the minimum size of a window's client area.
  *
  * \param window the window to query.
- * \param w a pointer filled in with the minimum width of the window, may be
+ * \param w a pointer filled in with the minimum m_width of the window, may be
  *          NULL.
- * \param h a pointer filled in with the minimum height of the window, may be
+ * \param h a pointer filled in with the minimum m_height of the window, may be
  *          NULL.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -1935,8 +1935,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GetWindowMinimumSize(SDL_Window *window, in
  * Set the maximum size of a window's client area.
  *
  * \param window the window to change.
- * \param max_w the maximum width of the window, or 0 for no limit.
- * \param max_h the maximum height of the window, or 0 for no limit.
+ * \param max_w the maximum m_width of the window, or 0 for no limit.
+ * \param max_h the maximum m_height of the window, or 0 for no limit.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -1953,9 +1953,9 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetWindowMaximumSize(SDL_Window *window, in
  * Get the maximum size of a window's client area.
  *
  * \param window the window to query.
- * \param w a pointer filled in with the maximum width of the window, may be
+ * \param w a pointer filled in with the maximum m_width of the window, may be
  *          NULL.
- * \param h a pointer filled in with the maximum height of the window, may be
+ * \param h a pointer filled in with the maximum m_height of the window, may be
  *          NULL.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.

@@ -21,10 +21,14 @@ namespace BlackBoxEngine
         { lhs != rhs } -> std::convertible_to<bool>;
     };
 
-    template <std::invocable Listener, Comparable Event, std::integral CallbackId = uint64_t>
+    template <class Listener, Comparable Event, std::integral CallbackId = uint64_t>
     class BB_Observer
     {
     public:
+        using ListenerType = Listener;
+        using CallbackIdType = CallbackId;
+        using EventType = Event;
+
         using FunctionMap = std::unordered_map< CallbackId, Listener>;
         using EventMap = std::unordered_map<Event, FunctionMap>;
         using IdType = CallbackId;
@@ -36,22 +40,22 @@ namespace BlackBoxEngine
 
     public:
         // Registering
-        CallbackId RegisterListener(Listener&& callbackFunction, const Event& event);
+        CallbackId RegisterListener(const Event& event , Listener&& callbackFunction);
 
         // Removal
         void RemoveListener(CallbackId callbackId);
-        void RemoveListenerHint(CallbackId callbackId, const Event& event);
+        void RemoveListenerWithEvent(CallbackId callbackId, const Event& event);
 
         // Checking 
         bool IsListeningFor(const Event& event);
 
         // Sending
         void PushEvent(const Event& event);
-        template<typename... Args> void PushEvent(const Event& event, Args... args);
+        template<typename... Args> void PushEvent(const Event& event, Args&&... args);
     };
 
-    template<std::invocable Listener, Comparable Event, std::integral CallbackId>
-    inline CallbackId BB_Observer<Listener, Event, CallbackId>::RegisterListener(Listener&& callbackFunction, const Event& event)
+    template<class Listener, Comparable Event, std::integral CallbackId>
+    inline CallbackId BB_Observer<Listener, Event, CallbackId>::RegisterListener(const Event& event , Listener&& callbackFunction)
     {
         m_eventMap[event].emplace(m_currentId, std::forward<Listener>(callbackFunction));
         return m_currentId++;
@@ -61,7 +65,7 @@ namespace BlackBoxEngine
      * @brief Loops through every function stored by the observer to remove the correct listener function
      * @param callbackId : Id returned by RegisterListener(), tied to the listening function
      */
-    template<std::invocable Listener, Comparable Event, std::integral CallbackId>
+    template<class Listener, Comparable Event, std::integral CallbackId>
     inline void BB_Observer<Listener, Event, CallbackId>::RemoveListener(CallbackId callbackId)
     {
         for (auto& [event, map] : m_eventMap)
@@ -80,8 +84,8 @@ namespace BlackBoxEngine
      * @param callbackId: Id returned by RegisterListener(), tied to the listening function
      * @param event: event the function is tied to
      */
-    template<std::invocable Listener, Comparable Event, std::integral CallbackId>
-    inline void BB_Observer<Listener, Event, CallbackId>::RemoveListenerHint(CallbackId callbackId, const Event& event)
+    template<class Listener, Comparable Event, std::integral CallbackId>
+    inline void BB_Observer<Listener, Event, CallbackId>::RemoveListenerWithEvent(CallbackId callbackId, const Event& event)
     {
         auto it = m_eventMap.find(event);
         if (it == m_eventMap.end())
@@ -102,15 +106,15 @@ namespace BlackBoxEngine
      * @brief Calls every function listening for event, passing in void.
      * @param event : event functions are tied to with RegisterListener()
      */
-    template<std::invocable Listener, Comparable Event, std::integral CallbackId>
+    template<class Listener, Comparable Event, std::integral CallbackId>
     inline void BB_Observer<Listener, Event, CallbackId>::PushEvent(const Event& event)
     {
         auto it = m_eventMap.find(event);
         if (it == m_eventMap.end())
             return;
-        for (auto& [id, function] : it->second)
+        for (auto& [id, invocableObject] : it->second)
         {
-            function();
+            invocableObject();
         }
     }
 
@@ -119,9 +123,9 @@ namespace BlackBoxEngine
      * @param event : event functions are tied to with RegisterListener()
      * @param args : all arguements to be passed to the function call
      */
-    template<std::invocable Listener, Comparable Event, std::integral CallbackId>
+    template<class Listener, Comparable Event, std::integral CallbackId>
     template<typename ...Args>
-    inline void BB_Observer<Listener, Event, CallbackId>::PushEvent(const Event& event, Args ...args)
+    inline void BB_Observer<Listener, Event, CallbackId>::PushEvent(const Event& event, Args&& ...args)
     {
         auto it = m_eventMap.find(event);
         if (it == m_eventMap.end())
@@ -132,7 +136,7 @@ namespace BlackBoxEngine
         }
     }
 
-    template<std::invocable Listener, Comparable Event, std::integral CallbackId>
+    template<class Listener, Comparable Event, std::integral CallbackId>
     inline bool BB_Observer<Listener, Event, CallbackId>::IsListeningFor(const Event& event)
     {
         auto it = m_eventMap.find(event);

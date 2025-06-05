@@ -22,7 +22,7 @@ namespace BlackBoxEngine
 
 		int m_SdlErrorCode = 0;
 
-		bool m_keepRunning = true;
+		bool m_isOpen = true;
 
 	public:
 		BB_Window(const char* title, int xPos, int yPos, int width, int height);
@@ -31,14 +31,20 @@ namespace BlackBoxEngine
 		BB_Window& operator=(const BB_Window&) = delete;
 
 		int SetTitle(const char* title);
-		int SetDimensions(int width, int height);
-		int SetPosition(int x, int y);
+        int SetDimensions(int width, int height);
+        int SetPosition(int x, int y);
+        
+        const char* GetTitle() const { return m_pTitle; }
+        int GetWidth() const { return m_width; }
+        int GetHeight() const { return m_height; }
+        int GetXPos() const { return m_xPos; }
+        int GetYPos() const { return m_xPos; }
 
 		BB_Renderer* const GetRenderer() const { return m_pRenderer; }
 
 		int StartWindow();
 		int StopWindow();
-		bool IsRunning() const { return m_keepRunning; }
+		bool IsOpen() const { return m_isOpen; }
 	};
 
 
