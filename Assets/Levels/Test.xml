@@ -1,0 +1,52 @@
+<Actor SeperateFile = "true">
+	<FilePath>../Assets/Actors/Player.xml</FilePath>
+</Actor>
+<!-- left border -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>64</X>
+            <Y>80</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>12</width>
+        <height>600</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+	<Component Name="ColliderDebugRenderer">
+        <RenderColor>
+            <R>0</R>
+            <G>0</G>
+            <B>255</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>64</X>
+            <Y>80</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>900</width>
+        <height>12</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+	<Component Name="ColliderDebugRenderer">
+        <RenderColor>
+            <R>0</R>
+            <G>255</G>
+            <B>0</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</Actor>

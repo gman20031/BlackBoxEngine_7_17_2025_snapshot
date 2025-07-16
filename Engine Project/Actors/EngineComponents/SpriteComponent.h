@@ -2,9 +2,9 @@
 
 #include <memory>
 
-#include "TranslationComponent.h"
+#include "TransformComponent.h"
 #include "../Component.h"
-#include "../../Graphics/TextureFactory.h"
+#include "../../Resources/TextureFactory.h"
 #include "../../Graphics/Renderer.h"
 
 namespace BlackBoxEngine
@@ -20,7 +20,7 @@ namespace BlackBoxEngine
         const char* m_pFilePath = nullptr;
         std::shared_ptr<BB_Texture> m_pTexture = nullptr;
         BB_Renderer* m_pRenderer = nullptr;
-        TranslationComponent* m_pTranslationComponent = nullptr;
+        TransformComponent* m_pTransform = nullptr;
     public:
         SpriteComponent(Actor* pOwner);
 

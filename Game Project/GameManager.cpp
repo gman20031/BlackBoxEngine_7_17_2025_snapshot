@@ -3,45 +3,43 @@
 #include <assert.h>
 
 #include "../Engine Project/System/SimpleTimingSystem.h"
-
 #include "../Engine Project/System/Log.h"
-#include "../Engine Project/Actors/EngineComponents/SpriteComponent.h"
-#include "../Engine Project/Graphics/RenderingStructs.h"
-
-#include "PlayerCharacter/PlayerMovement.h"
 
 using namespace BlackBoxEngine;
 GameManager::GameManager()
+    : m_pEngineManager(BlackBoxManager::NewSingleton())
 {
-    m_pEngineManager = BlackBoxManager::Get();
-	m_sceneIndex = m_pEngineManager->CreateSceneWindow(
+	m_pEngineManager->CreateWindow(
 		"New Game", kDefaultXPos, kDefaultYPos, kDefaultWidth, kDefaultHeight
 	);
 	
-    BB_LOG(BlackBoxEngine::LogType::kMessage, "Scene created : index ", m_sceneIndex);
+    BB_LOG(BlackBoxEngine::LogType::kMessage, "Window created");
+}
+
+GameManager::~GameManager()
+{
+    if(m_pEngineManager)
+        m_pEngineManager->DeleteSingleton();
 }
 
 void GameManager::InitGame()
 {
-    auto* pActorManager = m_pEngineManager->GetScene(m_sceneIndex)->m_pSceneActorManager;
-    pActorManager->LoadActor("../Assets/Actors/Background.xml");
-    pActorManager->LoadActor("../Assets/Actors/Player.xml");
-    pActorManager->LoadActor("../Assets/Actors/Goriya.xml");
+    auto* pActorManager = m_pEngineManager->m_pActorManager;
+    pActorManager->LoadLevel("../Assets/Levels/ZeldaGame.xml");
 
-    //auto& pActor = pActorManager->LoadActor("../Assets/Actors/Test.xml");
-    //pActor->GetComponent<SpriteComponent>()->SetTexture("../Assets/Link.png");
-    //pActor->GetComponent<SpriteComponent>()->SetDimensions(32,32);
-    //BlackBoxEngine::ActorXMLParser::SaveActor(pActor, "Player");
 }
 
-void GameManager::StartGame()
+void GameManager::Launch()
 {
-	m_pEngineManager->InitEngine();
+    SimpleTimer* pTimer = new SimpleTimer;
+    pTimer->StartTimer();
+
+    assert(m_pEngineManager);
+    m_pEngineManager->InitEngine();
     InitGame();
 
-    BB_LOG(LogType::kMessage, "Startup time " , SimpleTimer::StopTimer("Startup time") );
+    BB_LOG(LogType::kMessage, "Startup time ", pTimer->GetDeltaTime() );
+    delete pTimer;
 
-	m_pEngineManager->m_keepRunning = true;
-	m_pEngineManager->StartEngine();
-
+    m_pEngineManager->RunEngine();
 }

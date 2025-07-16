@@ -2,7 +2,7 @@
 #include <concepts>
 #include <string>
 #include "../System/StringHash.h"
-#include "../System/XML/BlackBoxXMLParser.h"
+#include "../Resources/XML/BlackBoxXMLParser.h"
 
 namespace BlackBoxEngine
 {
@@ -13,8 +13,9 @@ namespace BlackBoxEngine
     //   void Start() {}
     //   void Render() {}
     //   void Update() {}
-    //   void OnCollide() {}
-    //   void Save () {}
+    //   void OnCollide(Actor* pOther) {}
+    //   void Save (const XMLElementParser parser) {}
+    //   void Load (XMLElementParser parser) {}
     //	To inherit:
     //   add GENERATE_ID 
     //   and Esnure constructor calls component constructor
@@ -37,6 +38,7 @@ namespace BlackBoxEngine
         constexpr virtual void Start() { /* EMPTY */ }
         constexpr virtual void Render() { /* EMPTY */ }
         constexpr virtual void Update() { /* EMPTY */ }
+        constexpr virtual void OnCollide([[maybe_unused]] Actor* pOther) { /* EMPTY */ }
         virtual void Save([[maybe_unused]]const XMLElementParser parser) { /* EMPTY */ }
         virtual void Load([[maybe_unused]]XMLElementParser parser) { /* EMPTY */ }
     };

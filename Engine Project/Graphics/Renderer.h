@@ -11,7 +11,7 @@ namespace BlackBoxEngine
 {
     class BB_Renderer
     {
-        friend class BB_TextureFactory;
+        friend class TextureFactory;
     private: // variables
         SDL_Renderer* m_pSdlRenderer = nullptr;
         const BB_Window* m_pAttachedWindow = nullptr;
@@ -30,11 +30,11 @@ namespace BlackBoxEngine
     public:
         BB_Renderer(BB_Window* pWindow);
         ~BB_Renderer();
-        void ClearRenderer();
+        void Clear();
         void Present();
 
-        bool SetRenderDrawColor(const ColorValue& newDrawColor);
-        bool SetRenderBackgroundColor(const ColorValue& newBackgroundColor);
+        bool SetDrawColor(const ColorValue& newDrawColor);
+        bool SetBackgroundColor(const ColorValue& newBackgroundColor);
 
         // draw line
         bool DrawLine(BB_Point start, BB_Point end);
@@ -42,6 +42,8 @@ namespace BlackBoxEngine
         // draw rectangle
         bool DrawRect(const BB_Rectangle& rec);
         bool DrawRectFilled(const BB_Rectangle& rec);
+        bool DrawRect(const BB_Rectangle& rec , const ColorValue& color);
+        bool DrawRectFilled(const BB_Rectangle& rec, const ColorValue& color);
 
         const char* GetErrorStr();
         // draw texture

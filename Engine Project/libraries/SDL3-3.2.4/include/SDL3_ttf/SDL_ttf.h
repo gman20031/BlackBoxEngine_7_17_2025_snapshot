@@ -707,12 +707,12 @@ extern SDL_DECLSPEC void SDLCALL TTF_SetFontWrapAlignment(TTF_Font *font, TTF_Ho
 extern SDL_DECLSPEC TTF_HorizontalAlignment SDLCALL TTF_GetFontWrapAlignment(const TTF_Font *font);
 
 /**
- * Query the total height of a font.
+ * Query the total m_height of a font.
  *
  * This is usually equal to point size.
  *
  * \param font the font to query.
- * \returns the font's height.
+ * \returns the font's m_height.
  *
  * \threadsafety It is safe to call this function from any thread.
  *
@@ -816,16 +816,16 @@ extern SDL_DECLSPEC void SDLCALL TTF_SetFontKerning(TTF_Font *font, bool enabled
 extern SDL_DECLSPEC bool SDLCALL TTF_GetFontKerning(const TTF_Font *font);
 
 /**
- * Query whether a font is fixed-width.
+ * Query whether a font is fixed-m_width.
  *
- * A "fixed-width" font means all glyphs are the same width across; a
+ * A "fixed-m_width" font means all glyphs are the same m_width across; a
  * lowercase 'i' will be the same size across as a capital 'W', for example.
  * This is common for terminals and text editors, and other apps that treat
  * text as a grid. Most other things (WYSIWYG word processors, web pages, etc)
- * are more likely to not be fixed-width in most cases.
+ * are more likely to not be fixed-m_width in most cases.
  *
  * \param font the font to query.
- * \returns true if the font is fixed-width, false otherwise.
+ * \returns true if the font is fixed-m_width, false otherwise.
  *
  * \threadsafety It is safe to call this function from any thread.
  *
@@ -1118,15 +1118,15 @@ extern SDL_DECLSPEC bool TTF_GetGlyphKerning(TTF_Font *font, Uint32 previous_ch,
 /**
  * Calculate the dimensions of a rendered string of UTF-8 text.
  *
- * This will report the width and height, in pixels, of the space that the
+ * This will report the m_width and m_height, in pixels, of the space that the
  * specified string will take to fully render.
  *
  * \param font the font to query.
  * \param text text to calculate, in UTF-8 encoding.
  * \param length the length of the text, in bytes, or 0 for null terminated
  *               text.
- * \param w will be filled with width, in pixels, on return.
- * \param h will be filled with height, in pixels, on return.
+ * \param w will be filled with m_width, in pixels, on return.
+ * \param h will be filled with m_height, in pixels, on return.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -1140,7 +1140,7 @@ extern SDL_DECLSPEC bool SDLCALL TTF_GetStringSize(TTF_Font *font, const char *t
 /**
  * Calculate the dimensions of a rendered string of UTF-8 text.
  *
- * This will report the width and height, in pixels, of the space that the
+ * This will report the m_width and m_height, in pixels, of the space that the
  * specified string will take to fully render.
  *
  * Text is wrapped to multiple lines on line endings and on word boundaries if
@@ -1152,9 +1152,9 @@ extern SDL_DECLSPEC bool SDLCALL TTF_GetStringSize(TTF_Font *font, const char *t
  * \param text text to calculate, in UTF-8 encoding.
  * \param length the length of the text, in bytes, or 0 for null terminated
  *               text.
- * \param wrap_width the maximum width or 0 to wrap on newline characters.
- * \param w will be filled with width, in pixels, on return.
- * \param h will be filled with height, in pixels, on return.
+ * \param wrap_width the maximum m_width or 0 to wrap on newline characters.
+ * \param w will be filled with m_width, in pixels, on return.
+ * \param h will be filled with m_height, in pixels, on return.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
  *
@@ -1166,7 +1166,7 @@ extern SDL_DECLSPEC bool SDLCALL TTF_GetStringSize(TTF_Font *font, const char *t
 extern SDL_DECLSPEC bool SDLCALL TTF_GetStringSizeWrapped(TTF_Font *font, const char *text, size_t length, int wrap_width, int *w, int *h);
 
 /**
- * Calculate how much of a UTF-8 string will fit in a given width.
+ * Calculate how much of a UTF-8 string will fit in a given m_width.
  *
  * This reports the number of characters that can be rendered before reaching
  * `max_width`.
@@ -1177,9 +1177,9 @@ extern SDL_DECLSPEC bool SDLCALL TTF_GetStringSizeWrapped(TTF_Font *font, const 
  * \param text text to calculate, in UTF-8 encoding.
  * \param length the length of the text, in bytes, or 0 for null terminated
  *               text.
- * \param max_width maximum width, in pixels, available for the string, or 0
- *                  for unbounded width.
- * \param measured_width a pointer filled in with the width, in pixels, of the
+ * \param max_width maximum m_width, in pixels, available for the string, or 0
+ *                  for unbounded m_width.
+ * \param measured_width a pointer filled in with the m_width, in pixels, of the
  *                       string that will fit, may be NULL.
  * \param measured_length a pointer filled in with the length, in bytes, of
  *                        the string that will fit, may be NULL.
@@ -1250,7 +1250,7 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid(TTF_Font *font, c
  * \param length the length of the text, in bytes, or 0 for null terminated
  *               text.
  * \param fg the foreground color for the text.
- * \param wrapLength the maximum width of the text surface or 0 to wrap on
+ * \param wrapLength the maximum m_width of the text surface or 0 to wrap on
  *                   newline characters.
  * \returns a new 8-bit, palettized surface, or NULL if there was an error.
  *
@@ -1355,7 +1355,7 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded(TTF_Font *font, 
  *               text.
  * \param fg the foreground color for the text.
  * \param bg the background color for the text.
- * \param wrap_width the maximum width of the text surface or 0 to wrap on
+ * \param wrap_width the maximum m_width of the text surface or 0 to wrap on
  *                   newline characters.
  * \returns a new 8-bit, palettized surface, or NULL if there was an error.
  *
@@ -1458,7 +1458,7 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended(TTF_Font *font,
  * \param length the length of the text, in bytes, or 0 for null terminated
  *               text.
  * \param fg the foreground color for the text.
- * \param wrap_width the maximum width of the text surface or 0 to wrap on
+ * \param wrap_width the maximum m_width of the text surface or 0 to wrap on
  *                   newline characters.
  * \returns a new 32-bit, ARGB surface, or NULL if there was an error.
  *
@@ -1562,7 +1562,7 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_LCD(TTF_Font *font, con
  *               text.
  * \param fg the foreground color for the text.
  * \param bg the background color for the text.
- * \param wrap_width the maximum width of the text surface or 0 to wrap on
+ * \param wrap_width the maximum m_width of the text surface or 0 to wrap on
  *                   newline characters.
  * \returns a new 32-bit, ARGB surface, or NULL if there was an error.
  *
@@ -2272,7 +2272,7 @@ extern SDL_DECLSPEC bool SDLCALL TTF_GetTextPosition(TTF_Text *text, int *x, int
  * This function may cause the internal text representation to be rebuilt.
  *
  * \param text the TTF_Text to modify.
- * \param wrap_width the maximum width in pixels, 0 to wrap on newline
+ * \param wrap_width the maximum m_width in pixels, 0 to wrap on newline
  *                   characters.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -2290,7 +2290,7 @@ extern SDL_DECLSPEC bool SDLCALL TTF_SetTextWrapWidth(TTF_Text *text, int wrap_w
  * Get whether wrapping is enabled on a text object.
  *
  * \param text the TTF_Text to query.
- * \param wrap_width a pointer filled in with the maximum width in pixels or 0
+ * \param wrap_width a pointer filled in with the maximum m_width in pixels or 0
  *                   if the text is being wrapped on newline characters.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -2451,9 +2451,9 @@ extern SDL_DECLSPEC bool SDLCALL TTF_DeleteTextString(TTF_Text *text, int offset
  * change.
  *
  * \param text the TTF_Text to query.
- * \param w a pointer filled in with the width of the text, in pixels, may be
+ * \param w a pointer filled in with the m_width of the text, in pixels, may be
  *          NULL.
- * \param h a pointer filled in with the height of the text, in pixels, may be
+ * \param h a pointer filled in with the m_height of the text, in pixels, may be
  *          NULL.
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.

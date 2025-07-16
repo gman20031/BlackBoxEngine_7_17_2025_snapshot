@@ -107,7 +107,7 @@ typedef enum SDL_FlipMode
  * occupies an amount of memory given by the pitch (sometimes known as the row
  * stride in non-SDL APIs).
  *
- * Within each row, pixels are arranged from left to right until the width is
+ * Within each row, pixels are arranged from left to right until the m_width is
  * reached. Each pixel occupies a number of bits appropriate for its format,
  * with most formats representing each pixel as one or more whole bytes (in
  * some indexed formats, instead multiple pixels are packed into each byte),
@@ -129,8 +129,8 @@ struct SDL_Surface
 {
     SDL_SurfaceFlags flags;     /**< The flags of the surface, read-only */
     SDL_PixelFormat format;     /**< The format of the surface, read-only */
-    int w;                      /**< The width of the surface, read-only. */
-    int h;                      /**< The height of the surface, read-only. */
+    int w;                      /**< The m_width of the surface, read-only. */
+    int h;                      /**< The m_height of the surface, read-only. */
     int pitch;                  /**< The distance in bytes between rows of pixels, read-only */
     void *pixels;               /**< A pointer to the pixels of the surface, the pixels are writeable if non-NULL */
 
@@ -147,8 +147,8 @@ typedef struct SDL_Surface SDL_Surface;
  *
  * The pixels of the new surface are initialized to zero.
  *
- * \param width the width of the surface.
- * \param height the height of the surface.
+ * \param m_width the m_width of the surface.
+ * \param m_height the m_height of the surface.
  * \param format the SDL_PixelFormat for the new surface's pixel format.
  * \returns the new SDL_Surface structure that is created or NULL on failure;
  *          call SDL_GetError() for more information.
@@ -173,8 +173,8 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL SDL_CreateSurface(int width, int heigh
  * You may pass NULL for pixels and 0 for pitch to create a surface that you
  * will fill in with valid values later.
  *
- * \param width the width of the surface.
- * \param height the height of the surface.
+ * \param m_width the m_width of the surface.
+ * \param m_height the m_height of the surface.
  * \param format the SDL_PixelFormat for the new surface's pixel format.
  * \param pixels a pointer to existing pixel data.
  * \param pitch the number of bytes between each row, including padding.
@@ -800,8 +800,8 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL SDL_DuplicateSurface(SDL_Surface *surf
  * The returned surface should be freed with SDL_DestroySurface().
  *
  * \param surface the surface to duplicate and scale.
- * \param width the width of the new surface.
- * \param height the height of the new surface.
+ * \param m_width the m_width of the new surface.
+ * \param m_height the m_height of the new surface.
  * \param scaleMode the SDL_ScaleMode to be used.
  * \returns a copy of the surface or NULL on failure; call SDL_GetError() for
  *          more information.
@@ -867,8 +867,8 @@ extern SDL_DECLSPEC SDL_Surface * SDLCALL SDL_ConvertSurfaceAndColorspace(SDL_Su
 /**
  * Copy a block of pixels of one format to another format.
  *
- * \param width the width of the block to copy, in pixels.
- * \param height the height of the block to copy, in pixels.
+ * \param m_width the m_width of the block to copy, in pixels.
+ * \param m_height the m_height of the block to copy, in pixels.
  * \param src_format an SDL_PixelFormat value of the `src` pixels format.
  * \param src a pointer to the source pixels.
  * \param src_pitch the pitch of the source pixels, in bytes.
@@ -888,8 +888,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_ConvertPixels(int width, int height, SDL_Pi
  * Copy a block of pixels of one format and colorspace to another format and
  * colorspace.
  *
- * \param width the width of the block to copy, in pixels.
- * \param height the height of the block to copy, in pixels.
+ * \param m_width the m_width of the block to copy, in pixels.
+ * \param m_height the m_height of the block to copy, in pixels.
  * \param src_format an SDL_PixelFormat value of the `src` pixels format.
  * \param src_colorspace an SDL_Colorspace value describing the colorspace of
  *                       the `src` pixels.
@@ -918,8 +918,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_ConvertPixelsAndColorspace(int width, int h
  *
  * This is safe to use with src == dst, but not for other overlapping areas.
  *
- * \param width the width of the block to convert, in pixels.
- * \param height the height of the block to convert, in pixels.
+ * \param m_width the m_width of the block to convert, in pixels.
+ * \param m_height the m_height of the block to convert, in pixels.
  * \param src_format an SDL_PixelFormat value of the `src` pixels format.
  * \param src a pointer to the source pixels.
  * \param src_pitch the pitch of the source pixels, in bytes.
@@ -1080,9 +1080,9 @@ extern SDL_DECLSPEC bool SDLCALL SDL_FillSurfaceRects(SDL_Surface *dst, const SD
  *                copied, or NULL to copy the entire surface.
  * \param dst the SDL_Surface structure that is the blit target.
  * \param dstrect the SDL_Rect structure representing the x and y position in
- *                the destination surface, or NULL for (0,0). The width and
- *                height are ignored, and are copied from `srcrect`. If you
- *                want a specific width and height, you should use
+ *                the destination surface, or NULL for (0,0). The m_width and
+ *                m_height are ignored, and are copied from `srcrect`. If you
+ *                want a specific m_width and m_height, you should use
  *                SDL_BlitSurfaceScaled().
  * \returns true on success or false on failure; call SDL_GetError() for more
  *          information.
@@ -1265,10 +1265,10 @@ extern SDL_DECLSPEC bool SDLCALL SDL_BlitSurfaceTiledWithScale(SDL_Surface *src,
  * \param src the SDL_Surface structure to be copied from.
  * \param srcrect the SDL_Rect structure representing the rectangle to be used
  *                for the 9-grid, or NULL to use the entire surface.
- * \param left_width the width, in pixels, of the left corners in `srcrect`.
- * \param right_width the width, in pixels, of the right corners in `srcrect`.
- * \param top_height the height, in pixels, of the top corners in `srcrect`.
- * \param bottom_height the height, in pixels, of the bottom corners in
+ * \param left_width the m_width, in pixels, of the left corners in `srcrect`.
+ * \param right_width the m_width, in pixels, of the right corners in `srcrect`.
+ * \param top_height the m_height, in pixels, of the top corners in `srcrect`.
+ * \param bottom_height the m_height, in pixels, of the bottom corners in
  *                      `srcrect`.
  * \param scale the scale used to transform the corner of `srcrect` into the
  *              corner of `dstrect`, or 0.0f for an unscaled blit.
@@ -1360,8 +1360,8 @@ extern SDL_DECLSPEC Uint32 SDLCALL SDL_MapSurfaceRGBA(SDL_Surface *surface, Uint
  * components from pixel formats with less than 8 bits per RGB component.
  *
  * \param surface the surface to read.
- * \param x the horizontal coordinate, 0 <= x < width.
- * \param y the vertical coordinate, 0 <= y < height.
+ * \param x the horizontal coordinate, 0 <= x < m_width.
+ * \param y the vertical coordinate, 0 <= y < m_height.
  * \param r a pointer filled in with the red channel, 0-255, or NULL to ignore
  *          this channel.
  * \param g a pointer filled in with the green channel, 0-255, or NULL to
@@ -1384,8 +1384,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_ReadSurfacePixel(SDL_Surface *surface, int 
  * tests, but is not intended for use in a game engine.
  *
  * \param surface the surface to read.
- * \param x the horizontal coordinate, 0 <= x < width.
- * \param y the vertical coordinate, 0 <= y < height.
+ * \param x the horizontal coordinate, 0 <= x < m_width.
+ * \param y the vertical coordinate, 0 <= y < m_height.
  * \param r a pointer filled in with the red channel, normally in the range
  *          0-1, or NULL to ignore this channel.
  * \param g a pointer filled in with the green channel, normally in the range
@@ -1411,8 +1411,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_ReadSurfacePixelFloat(SDL_Surface *surface,
  * components from pixel formats with less than 8 bits per RGB component.
  *
  * \param surface the surface to write.
- * \param x the horizontal coordinate, 0 <= x < width.
- * \param y the vertical coordinate, 0 <= y < height.
+ * \param x the horizontal coordinate, 0 <= x < m_width.
+ * \param y the vertical coordinate, 0 <= y < m_height.
  * \param r the red channel value, 0-255.
  * \param g the green channel value, 0-255.
  * \param b the blue channel value, 0-255.
@@ -1431,8 +1431,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_WriteSurfacePixel(SDL_Surface *surface, int
  * tests, but is not intended for use in a game engine.
  *
  * \param surface the surface to write.
- * \param x the horizontal coordinate, 0 <= x < width.
- * \param y the vertical coordinate, 0 <= y < height.
+ * \param x the horizontal coordinate, 0 <= x < m_width.
+ * \param y the vertical coordinate, 0 <= y < m_height.
  * \param r the red channel value, normally in the range 0-1.
  * \param g the green channel value, normally in the range 0-1.
  * \param b the blue channel value, normally in the range 0-1.

@@ -1,24 +1,30 @@
 #pragma once
 
 #include "../../Engine Project/Actors/Component.h"
-#include "../../Engine Project/Actors/EngineComponents/TranslationComponent.h"
+#include "../../Engine Project/Actors/ActorManager.h"
+#include "../../Engine Project/Actors/EngineComponents/MoverComponent.h"
+#include "../../Engine Project/Actors/EngineComponents/TransformComponent.h"
 #include "../../Engine Project/Input/InputManager.h"
 
 class PlayerMovement : public BlackBoxEngine::Component
 {
     GENERATE_ID("PlayerMovement");
 
-    BlackBoxEngine::TranslationComponent* m_playerTranslator;
+    BlackBoxEngine::MoverComponent* m_pMover;
+    BlackBoxEngine::TransformComponent* m_pTransform;
 
-    static constexpr BlackBoxEngine::KeyCode kMoveUp    = BlackBoxEngine::KeyCode::kW;
-    static constexpr BlackBoxEngine::KeyCode kMoveLeft  = BlackBoxEngine::KeyCode::kA;
-    static constexpr BlackBoxEngine::KeyCode kMoveDown  = BlackBoxEngine::KeyCode::kS;
-    static constexpr BlackBoxEngine::KeyCode kMoveRight = BlackBoxEngine::KeyCode::kD;
+    uint64_t m_callbackCodes[8];
+    static constexpr BlackBoxEngine::KeyCode kUpKey    = BlackBoxEngine::KeyCode::kW;
+    static constexpr BlackBoxEngine::KeyCode kLeftKey  = BlackBoxEngine::KeyCode::kA;
+    static constexpr BlackBoxEngine::KeyCode kDownKey  = BlackBoxEngine::KeyCode::kS;
+    static constexpr BlackBoxEngine::KeyCode kRightKey = BlackBoxEngine::KeyCode::kD;
+
+    static constexpr float kPlayerSpeed = 180;
 
 public:
     PlayerMovement(BlackBoxEngine::Actor* pActor);
+    ~PlayerMovement();
 
     virtual void Start() override;
-    virtual void Update() override;
 };
 

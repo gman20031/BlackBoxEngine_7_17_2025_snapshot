@@ -13,11 +13,15 @@ namespace BlackBoxEngine
         TimerMapType timerMap;
 
         static TimerMapType& Map();
+        ClockType::time_point m_startTime;
 
     public:
 
-        static void StartTimer(const std::string& name);
+        static void StartGlobalTimer(const std::string& name);
         static std::chrono::milliseconds StopTimer(const std::string& name);
+
+        void StartTimer() { m_startTime = ClockType::now(); }
+        double GetDeltaTime() const;
     };
 
 

@@ -1299,8 +1299,8 @@ typedef struct SDL_GPUViewport
 {
     float x;          /**< The left offset of the viewport. */
     float y;          /**< The top offset of the viewport. */
-    float w;          /**< The width of the viewport. */
-    float h;          /**< The height of the viewport. */
+    float w;          /**< The m_width of the viewport. */
+    float h;          /**< The m_height of the viewport. */
     float min_depth;  /**< The minimum depth of the viewport. */
     float max_depth;  /**< The maximum depth of the viewport. */
 } SDL_GPUViewport;
@@ -1376,8 +1376,8 @@ typedef struct SDL_GPUTextureRegion
     Uint32 x;                 /**< The left offset of the region. */
     Uint32 y;                 /**< The top offset of the region. */
     Uint32 z;                 /**< The front offset of the region. */
-    Uint32 w;                 /**< The width of the region. */
-    Uint32 h;                 /**< The height of the region. */
+    Uint32 w;                 /**< The m_width of the region. */
+    Uint32 h;                 /**< The m_height of the region. */
     Uint32 d;                 /**< The depth of the region. */
 } SDL_GPUTextureRegion;
 
@@ -1395,8 +1395,8 @@ typedef struct SDL_GPUBlitRegion
     Uint32 layer_or_depth_plane;  /**< The layer index or depth plane of the region. This value is treated as a layer index on 2D array and cube textures, and as a depth plane on 3D textures. */
     Uint32 x;                     /**< The left offset of the region. */
     Uint32 y;                     /**< The top offset of the region.  */
-    Uint32 w;                     /**< The width of the region. */
-    Uint32 h;                     /**< The height of the region. */
+    Uint32 w;                     /**< The m_width of the region. */
+    Uint32 h;                     /**< The m_height of the region. */
 } SDL_GPUBlitRegion;
 
 /**
@@ -1664,8 +1664,8 @@ typedef struct SDL_GPUTextureCreateInfo
     SDL_GPUTextureType type;          /**< The base dimensionality of the texture. */
     SDL_GPUTextureFormat format;      /**< The pixel format of the texture. */
     SDL_GPUTextureUsageFlags usage;   /**< How the texture is intended to be used by the client. */
-    Uint32 width;                     /**< The width of the texture. */
-    Uint32 height;                    /**< The height of the texture. */
+    Uint32 width;                     /**< The m_width of the texture. */
+    Uint32 height;                    /**< The m_height of the texture. */
     Uint32 layer_count_or_depth;      /**< The layer count or depth of the texture. This value is treated as a layer count on 2D array textures, and as a depth value on 3D textures. */
     Uint32 num_levels;                /**< The number of mip levels in the texture. */
     SDL_GPUSampleCount sample_count;  /**< The number of samples per texel. Only applies if the texture is used as a render target. */
@@ -3557,8 +3557,8 @@ extern SDL_DECLSPEC void SDLCALL SDL_UploadToGPUBuffer(
  * \param copy_pass a copy pass handle.
  * \param source a source texture region.
  * \param destination a destination texture region.
- * \param w the width of the region to copy.
- * \param h the height of the region to copy.
+ * \param w the m_width of the region to copy.
+ * \param h the m_height of the region to copy.
  * \param d the depth of the region to copy.
  * \param cycle if true, cycles the destination texture if the destination
  *              texture is bound, otherwise overwrites the data.
@@ -3853,9 +3853,9 @@ extern SDL_DECLSPEC SDL_GPUTextureFormat SDLCALL SDL_GetGPUSwapchainTextureForma
  * \param swapchain_texture a pointer filled in with a swapchain texture
  *                          handle.
  * \param swapchain_texture_width a pointer filled in with the swapchain
- *                                texture width, may be NULL.
+ *                                texture m_width, may be NULL.
  * \param swapchain_texture_height a pointer filled in with the swapchain
- *                                 texture height, may be NULL.
+ *                                 texture m_height, may be NULL.
  * \returns true on success, false on error; call SDL_GetError() for more
  *          information.
  *
@@ -3925,9 +3925,9 @@ extern SDL_DECLSPEC bool SDLCALL SDL_WaitForGPUSwapchain(
  * \param swapchain_texture a pointer filled in with a swapchain texture
  *                          handle.
  * \param swapchain_texture_width a pointer filled in with the swapchain
- *                                texture width, may be NULL.
+ *                                texture m_width, may be NULL.
  * \param swapchain_texture_height a pointer filled in with the swapchain
- *                                 texture height, may be NULL.
+ *                                 texture m_height, may be NULL.
  * \returns true on success, false on error; call SDL_GetError() for more
  *          information.
  *
@@ -4141,8 +4141,8 @@ extern SDL_DECLSPEC bool SDLCALL SDL_GPUTextureSupportsSampleCount(
  * Calculate the size in bytes of a texture format with dimensions.
  *
  * \param format a texture format.
- * \param width width in pixels.
- * \param height height in pixels.
+ * \param m_width m_width in pixels.
+ * \param m_height m_height in pixels.
  * \param depth_or_layer_count depth for 3D textures or layer count otherwise.
  * \returns the size of a texture with this format and dimensions.
  *

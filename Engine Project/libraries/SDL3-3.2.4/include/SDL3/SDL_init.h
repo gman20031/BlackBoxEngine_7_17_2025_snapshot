@@ -186,7 +186,7 @@ typedef void (SDLCALL *SDL_AppQuit_func)(void *appstate, SDL_AppResult result);
  * SDL_InitSubSystem() might be preferred.
  *
  * The file I/O (for example: SDL_IOFromFile) and threading (SDL_CreateThread)
- * subsystems are initialized by default. Message boxes
+ * subsystems are initialized by default. EnqueueMessage boxes
  * (SDL_ShowSimpleMessageBox) also attempt to work without initializing the
  * video subsystem, in hopes of being useful in showing an error dialog when
  * SDL_Init fails. You must specifically initialize other subsystems if you

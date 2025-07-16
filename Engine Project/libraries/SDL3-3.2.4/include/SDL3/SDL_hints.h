@@ -677,7 +677,7 @@ extern "C" {
  * application.
  *
  * The contents of this hint must be 4 comma-separated integers, the first is
- * the bounds x, then y, width and height, in that order.
+ * the bounds x, then y, m_width and m_height, in that order.
  *
  * This hint can be set anytime.
  *
@@ -4003,13 +4003,13 @@ extern "C" {
 #define SDL_HINT_WINDOWS_ENABLE_MENU_MNEMONICS "SDL_WINDOWS_ENABLE_MENU_MNEMONICS"
 
 /**
- * A variable controlling whether the windows message loop is processed by
+ * A variable controlling whether the windows messageId loop is processed by
  * SDL.
  *
  * The variable can be set to the following values:
  *
- * - "0": The window message loop is not run.
- * - "1": The window message loop is processed in SDL_PumpEvents(). (default)
+ * - "0": The window messageId loop is not run.
+ * - "1": The window messageId loop is processed in SDL_PumpEvents(). (default)
  *
  * This hint can be set anytime.
  *
@@ -4038,7 +4038,7 @@ extern "C" {
  *
  * The variable can be set to the following values:
  *
- * - "0": The Windows message loop is used for keyboard events. (default)
+ * - "0": The Windows messageId loop is used for keyboard events. (default)
  * - "1": Low latency raw keyboard events are used.
  *
  * This hint can be set anytime.
@@ -4116,7 +4116,7 @@ extern "C" {
 
 /**
  * A variable controlling whether SDL will clear the window contents when the
- * WM_ERASEBKGND message is received.
+ * WM_ERASEBKGND messageId is received.
  *
  * The variable can be set to the following values:
  *

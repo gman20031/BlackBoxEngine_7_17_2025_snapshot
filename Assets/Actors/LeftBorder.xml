@@ -1,0 +1,37 @@
+<LeftBorder>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>190</X>
+            <Y>190</Y>
+        </Position>
+        <PreviousPos>
+            <X>0</X>
+            <Y>0</Y>
+        </PreviousPos>
+        <Rotation>
+            <X>0</X>
+            <Y>0</Y>
+        </Rotation>
+    </Component>
+    <Component Name="MovementBlocker"/>
+    <Component Name="AABBColliderComponent">
+        <width>25</width>
+        <height>806</height>
+        <blockable>false</blockable>
+        <enabled>true</enabled>
+    </Component>
+    <Component Name="RectRenderer">
+        <RenderRectangle>
+            <X>0</X>
+            <Y>0</Y>
+            <W>25</W>
+            <H>806</H>
+        </RenderRectangle>
+        <RenderColor>
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</LeftBorder>

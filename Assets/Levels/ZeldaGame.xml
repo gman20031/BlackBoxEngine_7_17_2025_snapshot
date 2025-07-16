@@ -1,0 +1,383 @@
+the order these are written is the order they render, so first is the farthest back
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>0</X>
+            <Y>0</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>1024</width>
+        <height>786</height>
+        <filePath>../Assets/Dungeon.png</filePath>
+    </Component>
+</Actor>
+<!-- Enemy ExitDoor -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>950</X>
+            <Y>331</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>123</width>
+        <height>123</height>
+        <filePath>../Assets/Door.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>123</width>
+        <height>123</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="DoorLogic"/>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<!-- Player -->
+<Actor SeperateFile = "true">
+	<FilePath>../Assets/Actors/Player.xml</FilePath>
+</Actor>
+<Actor SeperateFile = "true">
+	<FilePath>../Assets/Actors/Key.xml</FilePath>
+</Actor>
+<!-- left border -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>64</X>
+            <Y>80</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>12</width>
+        <height>600</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+	<Component Name="ColliderDebugRenderer">
+        <RenderColor>
+            <R>0</R>
+            <G>0</G>
+            <B>255</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</Actor>
+<!-- right border -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>950</X>
+            <Y>80</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>12</width>
+        <height>236</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+	<Component Name="ColliderDebugRenderer">
+        <RenderColor>
+            <R>255</R>
+            <G>0</G>
+            <B>0</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</Actor>
+<!-- right border 2 -->
+<Actor> 
+    <Component Name="TransformComponent">
+        <Position>
+            <X>950</X>
+            <Y>449</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>12</width>
+        <height>236</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+	<Component Name="ColliderDebugRenderer">
+        <RenderColor>
+            <R>255</R>
+            <G>0</G>
+            <B>0</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</Actor>
+<!-- Top border -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>64</X>
+            <Y>80</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>900</width>
+        <height>12</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+	<Component Name="ColliderDebugRenderer">
+        <RenderColor>
+            <R>0</R>
+            <G>255</G>
+            <B>0</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</Actor>
+<!-- Bottom border -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>64</X>
+            <Y>680</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>900</width>
+        <height>12</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+	<Component Name="ColliderDebugRenderer">
+        <RenderColor>
+            <R>255</R>
+            <G>255</G>
+            <B>255</B>
+            <A>255</A>
+        </RenderColor>
+    </Component>
+</Actor>
+<!-- World Blocks -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>192</X>
+            <Y>192</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>384</X>
+            <Y>192</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>576</X>
+            <Y>192</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>768</X>
+            <Y>192</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+    	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>192</X>
+            <Y>494</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+		<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>384</X>
+            <Y>494</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+    	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>576</X>
+            <Y>494</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>768</X>
+            <Y>494</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Block.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>false</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="MovementBlocker"/>
+</Actor>
+<!-- Enemy One -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>700</X>
+            <Y>494</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Goriya.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>true</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="EnemyLogic"/>
+</Actor>
+<!-- Enemy Two -->
+<Actor>
+    <Component Name="TransformComponent">
+        <Position>
+            <X>700</X>
+            <Y>192</Y>
+        </Position>
+        <Rotation>0</Rotation>
+    </Component>
+    <Component Name="SpriteComponent">
+        <width>64</width>
+        <height>64</height>
+        <filePath>../Assets/Darknut.png</filePath>
+    </Component>
+	<Component Name="AABBColliderComponent">
+		<width>64</width>
+        <height>64</height>
+		<blockable>true</blockable>
+		<enabled>true</enabled>
+	</Component>
+	<Component Name="EnemyLogic"/>
+</Actor>

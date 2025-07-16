@@ -84,6 +84,8 @@ int BlackBoxEngine::BB_Window::StartWindow()
 
 int BlackBoxEngine::BB_Window::StopWindow()
 {
-	m_keepRunning = false;
+    SDL_free(m_pSdlWindow);
+    delete m_pRenderer;
+	m_isOpen = false;
     return 0;
 }

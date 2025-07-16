@@ -4,7 +4,7 @@
 
 #include "ComponentFactory.h"
 #include "../System/Log.h"
-#include "../System/XML/tinyxml2.h"
+#include "../Resources/XML/tinyxml2.h"
 
 namespace BlackBoxEngine
 {
@@ -46,7 +46,7 @@ namespace BlackBoxEngine
         return true;
     }
 
-    Component* Actor::GetComponent(Id componentId)
+    Component* Actor::GetComponent(uint32_t componentId)
     {
         auto it = m_componentMap.find(componentId);
         if( it == m_componentMap.end() )
@@ -70,6 +70,12 @@ namespace BlackBoxEngine
     {
         for (const auto& [id, pComponent] : m_componentMap)
             pComponent->Start();
+    }
+
+    void Actor::Collided(Actor* pOther)
+    {
+        for (const auto& [id, pComponent] : m_componentMap)
+            pComponent->OnCollide(pOther);
     }
 
     bool operator==(const Actor& lhs, const Actor& rhs)

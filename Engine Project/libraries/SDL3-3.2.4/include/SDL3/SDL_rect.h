@@ -162,7 +162,7 @@ SDL_FORCE_INLINE bool SDL_PointInRect(const SDL_Point *p, const SDL_Rect *r)
  * Determine whether a rectangle has no area.
  *
  * A rectangle is considered "empty" for this function if `r` is NULL, or if
- * `r`'s width and/or height are <= 0.
+ * `r`'s m_width and/or m_height are <= 0.
  *
  * Note that this is a forced-inline function in a header, and not a public
  * API function available in the SDL library (which is to say, the code is
@@ -185,7 +185,7 @@ SDL_FORCE_INLINE bool SDL_RectEmpty(const SDL_Rect *r)
  * Determine whether two rectangles are equal.
  *
  * Rectangles are considered equal if both are not NULL and each of their x,
- * y, width and height match.
+ * y, m_width and m_height match.
  *
  * Note that this is a forced-inline function in a header, and not a public
  * API function available in the SDL library (which is to say, the code is
@@ -327,7 +327,7 @@ SDL_FORCE_INLINE bool SDL_PointInRectFloat(const SDL_FPoint *p, const SDL_FRect 
  * Determine whether a floating point rectangle can contain any point.
  *
  * A rectangle is considered "empty" for this function if `r` is NULL, or if
- * `r`'s width and/or height are < 0.0f.
+ * `r`'s m_width and/or m_height are < 0.0f.
  *
  * Note that this is a forced-inline function in a header, and not a public
  * API function available in the SDL library (which is to say, the code is
@@ -351,7 +351,7 @@ SDL_FORCE_INLINE bool SDL_RectEmptyFloat(const SDL_FRect *r)
  * given epsilon.
  *
  * Rectangles are considered equal if both are not NULL and each of their x,
- * y, width and height are within `epsilon` of each other. If you don't know
+ * y, m_width and m_height are within `epsilon` of each other. If you don't know
  * what value to use for `epsilon`, you should call the SDL_RectsEqualFloat
  * function instead.
  *
@@ -386,7 +386,7 @@ SDL_FORCE_INLINE bool SDL_RectsEqualEpsilon(const SDL_FRect *a, const SDL_FRect 
  * epsilon.
  *
  * Rectangles are considered equal if both are not NULL and each of their x,
- * y, width and height are within SDL_FLT_EPSILON of each other. This is often
+ * y, m_width and m_height are within SDL_FLT_EPSILON of each other. This is often
  * a reasonable way to compare two floating point rectangles and deal with the
  * slight precision variations in floating point calculations that tend to pop
  * up.

@@ -8,10 +8,7 @@
 
 #include "ConsoleManip.h"
 
-
 #define BB_LOG(type, ...) BlackBoxEngine::ComplexLog(type, std::source_location::current() , __VA_ARGS__ )
-
-
 
 namespace BlackBoxEngine
 {
@@ -40,6 +37,7 @@ namespace BlackBoxEngine
 		static void AppendToLogFile(const char* str);
 		template<StreamOverloaded ...Args>
 		static void AppendToLogFile(const Args& ...args);
+        static void OpenLog() { m_logFile.open(logFilePath, std::ios::out); } // Creates file for first time.};
 	};
 
     /**
@@ -54,11 +52,11 @@ namespace BlackBoxEngine
 
 #ifdef _DEBUG
     /**
-     * @brief Will log the message with additional information and formatting depending on log type. 
-     * @brief kMessage Appends nothing : "message"
-     * @brief kWarning Colors console text to yellow and Appends : "'WARNING' FUNCTION(LINE:COLLUMN) | message"
-     * @brief kError   Colors console text to orange and Appends : "'ERROR' FUNCTION(LINE:COLLUMN) |  message"
-     * @brief kFailure Colors console text to red and Appends : "'FAIL' FUNCTION(LINE:COLLUMN) |  message"
+     * @brief Will log the messageId with additional information and formatting depending on log type. 
+     * @brief kMessage Appends nothing : "messageId"
+     * @brief kWarning Colors console text to yellow and Appends : "'WARNING' FUNCTION(LINE:COLLUMN) | messageId"
+     * @brief kError   Colors console text to orange and Appends : "'ERROR' FUNCTION(LINE:COLLUMN) |  messageId"
+     * @brief kFailure Colors console text to red and Appends : "'FAIL' FUNCTION(LINE:COLLUMN) |  messageId"
      * THEN ABORTS PROGRAM
      */
     template<StreamOverloaded ...Args>
@@ -93,23 +91,19 @@ namespace BlackBoxEngine
         ConsoleManip::ChangeConsoleFormatting(TEXT_DEF);
     }
 #else // _DEBUG
+
     template<StreamOverloaded ...Args>
     void ComplexLog(
-        [[maybe_unused]]const LogType type,
-        [[maybe_unused]]const std::source_location location,
-        [[maybe_unused]]const Args & ...args)
-    {
-        return;
-    }
+        [[maybe_unused]] const LogType type,
+        [[maybe_unused]] const std::source_location location,
+        [[maybe_unused]] const Args & ...args)  {};
 #endif
     
     template<StreamOverloaded ...Args>
 	inline void Logger::AppendToLogFile(const Args&... args)
 	{
-		if (!m_logFile.is_open())
-			m_logFile.open(logFilePath, std::ios::out); // Creates file for first time.
-
-		assert(m_logFile.is_open());
+        if (!m_logFile.is_open())
+            OpenLog();
 		(m_logFile << ... << args) << '\n';
 	}
 }

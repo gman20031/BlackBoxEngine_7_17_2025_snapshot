@@ -2012,7 +2012,7 @@ extern SDL_DECLSPEC bool SDLCALL SDL_SetAudioPostmixCallback(SDL_AudioDeviceID d
  * the headers), too big, or unsupported causes an error. Additionally, any
  * critical I/O error from the data source will terminate the loading process
  * with an error. The function returns NULL on error and in all cases (with
- * the exception of `src` being NULL), an appropriate error message will be
+ * the exception of `src` being NULL), an appropriate error messageId will be
  * set.
  *
  * It is required that the data source supports seeking.

@@ -28,7 +28,7 @@
 /*
  ***********************************************************************
  ** Header file for implementation of MD5                             **
- ** RSA Data Security, Inc. MD5 Message-Digest Algorithm              **
+ ** RSA Data Security, Inc. MD5 EnqueueMessage-Digest Algorithm              **
  ** Created: 2/17/90 RLR                                              **
  ** Revised: 12/27/90 SRD,AJ,BSK,JT Reference C version               **
  ** Revised (for MD5): RLR 4/27/91                                    **
@@ -42,12 +42,12 @@
 
 /*
  ***********************************************************************
- **  Message-digest routines:                                         **
- **  To form the message digest for a message M                       **
+ **  EnqueueMessage-digest routines:                                         **
+ **  To form the messageId digest for a messageId M                       **
  **    (1) Initialize a context buffer mdContext using MD5Init        **
  **    (2) Call MD5Update on mdContext and M                          **
  **    (3) Call MD5Final on mdContext                                 **
- **  The message digest is now in mdContext->digest[0...15]           **
+ **  The messageId digest is now in mdContext->digest[0...15]           **
  ***********************************************************************
 */
 
@@ -67,7 +67,7 @@ extern "C" {
 /* typedef a 32-bit type */
 typedef Uint32 MD5UINT4;
 
-/* Data structure for MD5 (Message-Digest) computation */
+/* Data structure for MD5 (EnqueueMessage-Digest) computation */
 typedef struct SDLTest_Md5Context {
     MD5UINT4 i[2];              /* number of _bits_ handled mod 2^64 */
     MD5UINT4 buf[4];            /* scratch buffer */
@@ -82,7 +82,7 @@ typedef struct SDLTest_Md5Context {
  *
  * \param  mdContext        pointer to context variable
  *
- * Note: The function initializes the message-digest context
+ * Note: The function initializes the messageId-digest context
  *       mdContext. Call before each new use of the context -
  *       all fields are set to zero.
  */
@@ -95,9 +95,9 @@ void SDLCALL SDLTest_Md5Init(SDLTest_Md5Context *mdContext);
  * \param  inBuf           pointer to data array/string
  * \param  inLen           length of data array/string
  *
- * Note: The function updates the message-digest context to account
+ * Note: The function updates the messageId-digest context to account
  *       for the presence of each of the characters inBuf[0..inLen-1]
- *       in the message whose digest is being computed.
+ *       in the messageId whose digest is being computed.
  */
 void SDLCALL SDLTest_Md5Update(SDLTest_Md5Context *mdContext, unsigned char *inBuf,
                  unsigned int inLen);
@@ -107,8 +107,8 @@ void SDLCALL SDLTest_Md5Update(SDLTest_Md5Context *mdContext, unsigned char *inB
  *
  * \param mdContext     pointer to context variable
  *
- * Note: The function terminates the message-digest computation and
- *       ends with the desired message digest in mdContext.digest[0..15].
+ * Note: The function terminates the messageId-digest computation and
+ *       ends with the desired messageId digest in mdContext.digest[0..15].
  *       Always call before using the digest[] variable.
  */
 void SDLCALL SDLTest_Md5Final(SDLTest_Md5Context *mdContext);

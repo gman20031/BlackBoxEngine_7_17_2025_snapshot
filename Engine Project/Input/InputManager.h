@@ -41,9 +41,9 @@ namespace BlackBoxEngine
 
         bool IsKeyDown(KeyCode key) const;
 
-        CallBackId SubscribeKey(Callback&& function, KeyCode key, InputType type);
+        CallBackId SubscribeToKey(KeyCode key, InputType type, Callback&& function);
         void UnsubscribeKey(CallBackId id, InputType type);
-        void UnsubscribeKeyHint(CallBackId id, InputType type, KeyCode key);
+        void UnsubscribeKeyWithCode(CallBackId id, InputType type, KeyCode key);
         void Update();
 
 

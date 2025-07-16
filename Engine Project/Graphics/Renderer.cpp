@@ -35,7 +35,7 @@ BlackBoxEngine::BB_Renderer::BB_Renderer(BB_Window* pWindow)
 	if (!m_pSdlRenderer)
 		SimpleLog(SDL_GetError());
 
-	SetRenderDrawColor(kDefaultDrawColor);
+	SetDrawColor(kDefaultDrawColor);
 }
 
 BlackBoxEngine::BB_Renderer::~BB_Renderer()
@@ -48,7 +48,7 @@ BlackBoxEngine::BB_Renderer::~BB_Renderer()
  * @brief Sets the draw color to background color, and fills the screen with that color.
  * Then swaps back to the normal set draw color.
  */
-void BlackBoxEngine::BB_Renderer::ClearRenderer()
+void BlackBoxEngine::BB_Renderer::Clear()
 {
 	SetSDLDrawColor(m_currentBackgroundColor);
 	SDL_RenderClear(m_pSdlRenderer);
@@ -57,17 +57,17 @@ void BlackBoxEngine::BB_Renderer::ClearRenderer()
 
 void BlackBoxEngine::BB_Renderer::Present()
 {
-	if (!SDL_RenderPresent(m_pSdlRenderer))
-        SimpleLog(SDL_GetError());
+    if (!SDL_RenderPresent(m_pSdlRenderer))
+        BB_LOG(LogType::kError, SDL_GetError());
 }
 
-bool BlackBoxEngine::BB_Renderer::SetRenderDrawColor(const ColorValue& newDrawColor)
+bool BlackBoxEngine::BB_Renderer::SetDrawColor(const ColorValue& newDrawColor)
 {
 	m_currentDrawColor = newDrawColor;
 	return SetSDLDrawColor(newDrawColor);
 }
 
-bool BlackBoxEngine::BB_Renderer::SetRenderBackgroundColor(const ColorValue& newBackgroundColor)
+bool BlackBoxEngine::BB_Renderer::SetBackgroundColor(const ColorValue& newBackgroundColor)
 {
 	m_currentBackgroundColor = newBackgroundColor;
 	return true;
@@ -90,6 +90,26 @@ bool BlackBoxEngine::BB_Renderer::DrawRectFilled(const BB_Rectangle& rec)
 	return SDL_RenderFillRect(m_pSdlRenderer, &sdlRect);
 }
 
+bool BlackBoxEngine::BB_Renderer::DrawRect(const BB_Rectangle& rec, const ColorValue& color)
+{
+    auto startColor = m_currentDrawColor;
+    SetDrawColor(color);
+    SDL_FRect sdlRect{ rec.x, rec.y , rec.w, rec.h };
+    bool good = SDL_RenderRect(m_pSdlRenderer, &sdlRect);
+    SetDrawColor(startColor);
+    return good;
+}
+
+bool BlackBoxEngine::BB_Renderer::DrawRectFilled(const BB_Rectangle& rec, const ColorValue& color)
+{
+    auto startColor = m_currentDrawColor;
+    SetDrawColor(color);
+    SDL_FRect sdlRect{ rec.x, rec.y , rec.w, rec.h };
+    bool good = SDL_RenderFillRect(m_pSdlRenderer, &sdlRect);
+    SetDrawColor(startColor);
+    return good;
+}
+
 const char* BlackBoxEngine::BB_Renderer::GetErrorStr()
 {
 	return SDL_GetError();
@@ -104,10 +124,10 @@ bool BlackBoxEngine::BB_Renderer::DrawTexture(
     const BB_FlipVal& flip
 )
 {
-    const SDL_FRect* pSdlSource = (const SDL_FRect*)(source);
-    const SDL_FRect* pSdlDest = (const SDL_FRect*)(dest);
-    const SDL_FPoint* pSdlCenter = (const SDL_FPoint*)(center);
-    const SDL_FlipMode sdlFlip = static_cast<SDL_FlipMode>(flip);
+    const SDL_FRect* pSdlSource = (const SDL_FRect*)(source);       // tested, this is faster
+    const SDL_FRect* pSdlDest = (const SDL_FRect*)(dest);           // than doing static_cast
+    const SDL_FPoint* pSdlCenter = (const SDL_FPoint*)(center);     // 
+    const SDL_FlipMode sdlFlip = static_cast<SDL_FlipMode>(flip);   // my code is copying Sdl, so I guarntee this to work
 
     assert(m_pSdlRenderer);
 

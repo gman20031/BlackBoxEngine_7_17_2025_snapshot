@@ -1,4 +1,4 @@
-<Background>
+<Actor>
     <Component Name="TranslationComponent">
         <Velocity>
             <X>0</X>
@@ -19,4 +19,4 @@
         <filePath>../Assets/Dungeon.png</filePath>
     </Component>
 
-</Background>
+</Actor>

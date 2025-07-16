@@ -702,7 +702,7 @@ typedef Sint64 SDL_Time;
 #define SDL_PRILLX SDL_PRILL_PREFIX "X"
 #endif /* SDL_WIKI_DOCUMENTATION_SECTION */
 
-/* Make sure we have macros for printing width-based integers.
+/* Make sure we have macros for printing m_width-based integers.
  * <inttypes.h> should define these but this is not true all platforms.
  * (for example win32) */
 #ifndef SDL_PRIs64
@@ -2657,7 +2657,7 @@ extern SDL_DECLSPEC int SDLCALL SDL_memcmp(const void *s1, const void *s2, size_
  *
  * Like SDL_strlen only counts bytes and not codepoints in a UTF-8 string,
  * this counts wchar_t values in a string, even if the string's encoding is of
- * variable width, like UTF-16.
+ * variable m_width, like UTF-16.
  *
  * Also be aware that wchar_t is different sizes on different platforms (4
  * bytes on Linux, 2 on Windows, etc).
@@ -2685,7 +2685,7 @@ extern SDL_DECLSPEC size_t SDLCALL SDL_wcslen(const wchar_t *wstr);
  *
  * Like SDL_strnlen only counts bytes and not codepoints in a UTF-8 string,
  * this counts wchar_t values in a string, even if the string's encoding is of
- * variable width, like UTF-16.
+ * variable m_width, like UTF-16.
  *
  * Also be aware that wchar_t is different sizes on different platforms (4
  * bytes on Linux, 2 on Windows, etc).
@@ -3350,7 +3350,7 @@ extern SDL_DECLSPEC char * SDLCALL SDL_strcasestr(const char *haystack, const ch
 extern SDL_DECLSPEC char * SDLCALL SDL_strtok_r(char *str, const char *delim, char **saveptr);
 
 /**
- * Count the number of codepoints in a UTF-8 string.
+ * ActorCount the number of codepoints in a UTF-8 string.
  *
  * Counts the _codepoints_, not _bytes_, in `str`, excluding the null
  * terminator.
@@ -3378,7 +3378,7 @@ extern SDL_DECLSPEC char * SDLCALL SDL_strtok_r(char *str, const char *delim, ch
 extern SDL_DECLSPEC size_t SDLCALL SDL_utf8strlen(const char *str);
 
 /**
- * Count the number of codepoints in a UTF-8 string, up to n bytes.
+ * ActorCount the number of codepoints in a UTF-8 string, up to n bytes.
  *
  * Counts the _codepoints_, not _bytes_, in `str`, excluding the null
  * terminator.

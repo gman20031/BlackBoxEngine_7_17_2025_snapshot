@@ -43,9 +43,9 @@ extern "C" {
 #endif
 
 /**
- * Prints given message with a timestamp in the TEST category and INFO priority.
+ * Prints given messageId with a timestamp in the TEST category and INFO priority.
  *
- * \param fmt Message to be logged
+ * \param fmt EnqueueMessage to be logged
  */
 void SDLCALL SDLTest_Log(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(1);
 
@@ -53,16 +53,16 @@ void SDLCALL SDLTest_Log(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRIN
  * Prints given prefix and buffer.
  * Non-printible characters in the raw data are substituted by printible alternatives.
  *
- * \param prefix Prefix message.
+ * \param prefix Prefix messageId.
  * \param buffer Raw data to be escaped.
  * \param size Number of bytes in buffer.
  */
 void SDLCALL SDLTest_LogEscapedString(const char *prefix, const void *buffer, size_t size);
 
 /**
- * Prints given message with a timestamp in the TEST category and the ERROR priority.
+ * Prints given messageId with a timestamp in the TEST category and the ERROR priority.
  *
- * \param fmt Message to be logged
+ * \param fmt EnqueueMessage to be logged
  */
 void SDLCALL SDLTest_LogError(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(1);
 

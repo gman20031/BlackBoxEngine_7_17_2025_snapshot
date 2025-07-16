@@ -1,0 +1,30 @@
+Component Registered: EnemyLogic
+Component Registered: GameGoal
+Component Registered: DoorLogic
+Component Registered: KeyLogic
+Component Registered: PlayerReaction
+Component Registered: PlayerHealth
+Component Registered: PlayerMovement
+Component Registered: GameTestingComponent
+Component Registered: MovementBlocker
+Component Registered: ColliderDebugRenderer
+Component Registered: MoverComponent
+Component Registered: SpriteComponent
+Component Registered: TransformComponent
+Component Registered: AABBColliderComponent
+Window created
+../Assets/Levels/ZeldaGame.xml imported properly
+../Assets/Dungeon.png imported properly
+../Assets/Door.png imported properly
+../Assets/Actors/Player.xml imported properly
+../Assets/Link.png imported properly
+../Assets/Actors/Key.xml imported properly
+../Assets/Key.png imported properly
+../Assets/Block.png imported properly
+../Assets/Goriya.png imported properly
+../Assets/Darknut.png imported properly
+Startup time 0.30871
+Game started in debug mode
+../Assets/Hall.png imported properly
+Player Found key, and door is now unlocked
+ERROR >> void __cdecl BlackBoxEngine::CollisionManager::RemoveActor(class BlackBoxEngine::Actor *) (425,13)  | Attempted to remove actor that was not added

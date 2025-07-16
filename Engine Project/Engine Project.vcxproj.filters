@@ -24,7 +24,7 @@
     <ClCompile Include="Graphics\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EngineManager.cpp">
+    <ClCompile Include="BlackBoxManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Renderer.cpp">
@@ -36,13 +36,13 @@
     <ClCompile Include="Graphics\RenderingStructs.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\TextureFactory.cpp">
+    <ClCompile Include="Resources\TextureFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Actors\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actors\EngineComponents\TranslationComponent.h">
+    <ClCompile Include="Actors\EngineComponents\TransformComponent.h">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Actors\EngineComponents\SpriteComponent.cpp">
@@ -60,22 +60,13 @@
     <ClCompile Include="Input\KeyCodes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System\XML\tinyxml2.cpp">
+    <ClCompile Include="Math\FVector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System\XML\BlackBoxXMLParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="System\FVector2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Actors\EngineComponents\TranslationComponent.cpp">
+    <ClCompile Include="Actors\EngineComponents\TransformComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Actors\ComponentFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Actors\EngineComponents\EngineComponentRegistrar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Scene.cpp">
@@ -85,6 +76,42 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="System\MessageManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\Collision\CollisionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\Collision\AABBColliderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\Collision\BoundingBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\DataFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\XML\BlackBoxXMLParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\XML\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\EngineComponents\MoverComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\EngineComponents\MovementBlocker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\Collision\ColliderBorder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\EngineComponents\ColliderDebugRenderer.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actors\EngineComponents\ColliderDebugRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,7 +125,7 @@
     <ClInclude Include="Graphics\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineManager.h">
+    <ClInclude Include="BlackBoxManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Renderer.h">
@@ -107,22 +134,19 @@
     <ClInclude Include="Graphics\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\GraphicsManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\TextureFactory.h">
+    <ClInclude Include="Resources\TextureFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="System\StringHash.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="System\Random.h">
+    <ClInclude Include="Math\Random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="System\NumericalConcepts.h">
+    <ClInclude Include="Math\NumericalConcepts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Actors\Actor.h">
@@ -134,9 +158,6 @@
     <ClInclude Include="Actors\EngineComponents\SpriteComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actors\EngineComponents\ComponentTemplate.txt">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Actors\ActorManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -144,12 +165,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="System\Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="System\XML\BlackBoxXMLParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="System\XML\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="libraries\SDL3-3.2.4\include\SDL3\SDL.h">
@@ -413,7 +428,7 @@
     <ClInclude Include="libraries\SDL3-3.2.4\include\SDL3_ttf\SDL_ttf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="System\FVector2.h">
+    <ClInclude Include="Math\FVector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Actors\ComponentFactory.h">
@@ -426,6 +441,39 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="System\MessageManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\Collision\CollisionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\Collision\AABBColliderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\Collision\BoundingBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\EngineComponents\MovementBlocker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\DataFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\XML\BlackBoxXMLParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\XML\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\EngineComponents\MoverComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Debugging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actors\Collision\ColliderBorder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
